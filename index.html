@@ -668,11 +668,311 @@
       font-size: 0.85rem;
     }
 
+    .value-cards {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.6rem;
+      margin: 1.8rem 0 1.4rem;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+
+    .value-cards button {
+      min-width: 200px;
+      border-radius: 16px;
+      border: 1px solid rgba(79, 141, 255, 0.22);
+      background: rgba(12, 18, 32, 0.86);
+      color: var(--soft-ink);
+      padding: 1rem 1.1rem;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      box-shadow: 0 16px 28px rgba(12, 24, 48, 0.18);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      scroll-snap-align: start;
+    }
+
+    .value-cards button strong {
+      display: block;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .value-cards button.active {
+      border-color: rgba(99, 230, 190, 0.55);
+      background: linear-gradient(135deg, rgba(79, 141, 255, 0.32), rgba(99, 230, 190, 0.25));
+      color: var(--ink);
+      box-shadow: 0 18px 36px rgba(71, 132, 255, 0.35);
+    }
+
+    .value-cards button:not(.active):hover {
+      transform: translateY(-3px);
+      border-color: rgba(79, 141, 255, 0.38);
+    }
+
+    .value-detail-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    .radar-panel {
+      background: rgba(10, 16, 28, 0.88);
+      border-radius: 24px;
+      border: 1px solid rgba(79, 141, 255, 0.22);
+      padding: 1.8rem;
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .radar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .radar-header h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .dimension-panel {
+      background: rgba(14, 20, 34, 0.9);
+      border-radius: 24px;
+      border: 1px solid rgba(99, 230, 190, 0.22);
+      padding: 1.8rem;
+      display: grid;
+      gap: 1.1rem;
+      color: var(--soft-ink);
+    }
+
+    .dimension-panel h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--ink);
+    }
+
+    .dimension-panel .dimension-subtitle {
+      margin: 0;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .dimension-panel .dimension-summary {
+      margin: 0;
+      font-size: 0.97rem;
+      color: var(--soft-ink);
+    }
+
+    .dimension-panel h4 {
+      margin: 0 0 0.45rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .dimension-block {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .dimension-focus {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--soft-ink);
+      border-left: 3px solid rgba(79, 141, 255, 0.3);
+      padding-left: 0.8rem;
+    }
+
+    .shift-list,
+    .metric-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.92rem;
+    }
+
+    .shift-list li::before {
+      content: '⇢';
+      margin-right: 0.6rem;
+      color: rgba(99, 230, 190, 0.85);
+    }
+
+    .metric-list li::before {
+      content: '◉';
+      margin-right: 0.5rem;
+      font-size: 0.7rem;
+      color: rgba(79, 141, 255, 0.9);
+    }
+
+    .dimension-panel blockquote {
+      margin: 0;
+      padding-left: 1rem;
+      border-left: 3px solid rgba(99, 230, 190, 0.45);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .constraint-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.4rem;
+      margin: 2.2rem 0;
+    }
+
+    .constraint-grid article {
+      background: rgba(14, 20, 32, 0.88);
+      border-radius: 20px;
+      border: 1px solid rgba(79, 141, 255, 0.2);
+      padding: 1.6rem;
+      color: var(--soft-ink);
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .constraint-grid h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+
+    .constraint-grid ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.92rem;
+      color: var(--soft-ink);
+    }
+
+    .matrix-header {
+      display: grid;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .dimension-insight {
+      display: grid;
+      gap: 1.2rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .insight-tasks {
+      display: grid;
+      gap: 0.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .task-chip {
+      padding: 1rem 1.1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(99, 230, 190, 0.22);
+      background: rgba(12, 19, 30, 0.9);
+      box-shadow: 0 12px 24px rgba(12, 24, 48, 0.24);
+      color: var(--soft-ink);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+    }
+
+    .task-chip h4 {
+      margin: 0 0 0.4rem;
+      font-size: 0.98rem;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .task-chip span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .task-chip p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--soft-ink);
+    }
+
+    .insight-metrics {
+      background: rgba(14, 20, 32, 0.88);
+      border-radius: 18px;
+      border: 1px solid rgba(79, 141, 255, 0.2);
+      padding: 1.2rem 1.4rem;
+      color: var(--soft-ink);
+    }
+
+    .insight-metrics h4 {
+      margin: 0 0 0.6rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .insight-metrics ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.92rem;
+    }
+
+    .matrix-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .matrix-switcher button {
+      border: 1px solid rgba(79, 141, 255, 0.26);
+      background: rgba(12, 18, 30, 0.85);
+      color: var(--muted);
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .matrix-switcher button.active {
+      background: linear-gradient(135deg, rgba(79, 141, 255, 0.36), rgba(99, 230, 190, 0.28));
+      border-color: rgba(99, 230, 190, 0.45);
+      color: var(--ink);
+      box-shadow: 0 14px 26px rgba(71, 132, 255, 0.28);
+    }
+
+    .insight-metrics p {
+      margin: 0.8rem 0 0;
+      font-size: 0.9rem;
+      color: var(--soft-ink);
+    }
     @media (max-width: 1080px) {
       .network-shell {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
       .value-core { grid-column: 1 / -1; }
+      .value-detail-layout { grid-template-columns: 1fr; }
+      .radar-panel, .dimension-panel { padding: 1.5rem; }
     }
 
     @media (max-width: 720px) {
@@ -688,6 +988,10 @@
       .bubble { font-size: 0.95rem; }
       .flow-board { grid-template-columns: 1fr; }
       .switcher { justify-content: flex-start; width: 100%; }
+      .value-detail-layout { gap: 1.2rem; }
+      .value-cards button { min-width: 160px; }
+      .radar-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .constraint-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -806,25 +1110,66 @@
     </section>
 
     <section class="value-dna" id="dna">
-      <div class="dna-head">
-        <div>
-          <h2>价值罗盘 · 让“指标”真正照向价值</h2>
-          <p class="section-intro">雷达图实时展示所选领域在五维价值上的侧重，韧性与绿色作为强制底线同步提示。</p>
-        </div>
-        <div class="switcher" id="domain-switcher"></div>
+      <div class="dna-head-text">
+        <h2>价值罗盘 · 把“为什么干”讲清楚</h2>
+        <p class="section-intro">“减负、增信、协同、创新、普惠”是创造公共价值的五个主攻方向，“韧性、绿色”是所有任务的一票否决底线。先选价值维度，再看哪几项任务最该发力。</p>
       </div>
-      <div class="dna-body">
-        <canvas id="value-radar" width="340" height="320"></canvas>
-        <div class="legend" id="legend">
-          <div class="legend-item"><span style="background:#4f8dff"></span>减负 · 办事提速、材料减项、认知门槛降低</div>
-          <div class="legend-item"><span style="background:#63e6be"></span>增信 · 数据画像、信用传导、风险可控</div>
-          <div class="legend-item"><span style="background:#8c54ff"></span>协同 · 跨部门联动、机制共建</div>
-          <div class="legend-item"><span style="background:#ffd166"></span>创新 · 新技术赋能流程再造</div>
-          <div class="legend-item"><span style="background:#ff6b6b"></span>普惠 · 关注弱势、适老适幼、城乡均衡</div>
+      <div class="value-cards" id="value-cards"></div>
+      <div class="value-detail-layout">
+        <div class="radar-panel">
+          <div class="radar-header">
+            <h3>领域权重雷达</h3>
+            <div class="switcher" id="domain-switcher"></div>
+          </div>
+          <canvas id="value-radar" width="360" height="330"></canvas>
+          <div class="legend" id="legend">
+            <div class="legend-item"><span style="background:#4f8dff"></span>减负 · 办事提速、材料减项、认知门槛降低</div>
+            <div class="legend-item"><span style="background:#63e6be"></span>增信 · 数据画像、信用传导、风险可控</div>
+            <div class="legend-item"><span style="background:#8c54ff"></span>协同 · 跨部门联动、机制共建</div>
+            <div class="legend-item"><span style="background:#ffd166"></span>创新 · 平台开放、生态共建</div>
+            <div class="legend-item"><span style="background:#ff6b6b"></span>普惠 · 兜底服务、弥合数字鸿沟</div>
+          </div>
+          <div class="baseline-callout" id="baseline-callout">请选择领域查看韧性与绿色约束的侧重点。</div>
         </div>
+        <article class="dimension-panel" id="dimension-panel"></article>
       </div>
-      <div class="baseline-callout" id="baseline-callout">
-        请选择领域查看韧性与绿色要求如何落在具体指标上。
+      <div class="constraint-grid">
+        <article>
+          <h3>韧性底线 · 先保证“关键时刻不断档”</h3>
+          <ul>
+            <li>民生类任务：季度可用率≥99.95%，战时降级切换≤5分钟，弱网断点续办成功率≥95%。</li>
+            <li>治理/运行类：关键链路RTO≤15分钟（高等级≤5分钟），RPO≤5分钟；每年至少两次全链条应急演练。</li>
+            <li>坚持双通道：所有核心服务保留线下兜底与人工“慢通道”，极端情况下可手工接续。</li>
+          </ul>
+        </article>
+        <article>
+          <h3>绿色底线 · 让低碳成为审批与融资新资产</h3>
+          <ul>
+            <li>H 级约束：单位办件CO₂e年降≥30%或“绿色直通件”占比≥70%，无纸化应用率≥90%。</li>
+            <li>M 级约束：线上替代率≥80%，无纸化应用率≥80%，推广电子证照、电子票据全流程闭环。</li>
+            <li>打造绿电算力认证、绿色直通车，让绿色指标成为企业获批、融资、上市的信用筹码。</li>
+          </ul>
+        </article>
+      </div>
+      <div class="value-matrix">
+        <div class="matrix-header">
+          <h3>价值映射 · 看清优先发力点</h3>
+          <p>选择价值维度，查看最需攻坚的任务与关键KPI。下方表格保留按领域汇总的平均权重，便于宏观统筹。</p>
+        </div>
+        <div class="matrix-switcher" id="dimension-switcher"></div>
+        <div class="dimension-insight" id="dimension-insight"></div>
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>领域</th>
+              <th>主攻价值</th>
+              <th>韧性</th>
+              <th>绿色</th>
+              <th>代表任务</th>
+            </tr>
+          </thead>
+          <tbody id="matrix-body"></tbody>
+        </table>
       </div>
     </section>
 
@@ -1231,6 +1576,42 @@
       }
     };
 
+    const taskWeights = {
+      'gan-sheng': { jianfu: 40, zengxin: 5, xietong: 15, chuangxin: 10, puhui: 30 },
+      'gan-bing': { jianfu: 35, zengxin: 10, xietong: 25, chuangxin: 20, puhui: 10 },
+      'gan-zou': { jianfu: 45, zengxin: 5, xietong: 20, chuangxin: 5, puhui: 25 },
+      'gan-xue': { jianfu: 35, zengxin: 5, xietong: 20, chuangxin: 10, puhui: 30 },
+      'gan-yang': { jianfu: 25, zengxin: 5, xietong: 15, chuangxin: 20, puhui: 35 },
+      'gan-zhu': { jianfu: 30, zengxin: 10, xietong: 20, chuangxin: 10, puhui: 30 },
+      'gan-qian': { jianfu: 25, zengxin: 15, xietong: 30, chuangxin: 15, puhui: 15 },
+      'gan-tou': { jianfu: 20, zengxin: 25, xietong: 30, chuangxin: 15, puhui: 10 },
+      'gan-dai': { jianfu: 10, zengxin: 40, xietong: 20, chuangxin: 20, puhui: 10 },
+      'gan-kuo': { jianfu: 20, zengxin: 20, xietong: 25, chuangxin: 20, puhui: 15 },
+      'gan-nong': { jianfu: 20, zengxin: 15, xietong: 20, chuangxin: 15, puhui: 30 },
+      'gan-guan': { jianfu: 15, zengxin: 15, xietong: 35, chuangxin: 20, puhui: 15 },
+      'gan-jiu': { jianfu: 10, zengxin: 10, xietong: 30, chuangxin: 25, puhui: 25 },
+      'gan-ping': { jianfu: 25, zengxin: 20, xietong: 25, chuangxin: 10, puhui: 20 },
+      'gan-xing': { jianfu: 15, zengxin: 20, xietong: 35, chuangxin: 15, puhui: 15 },
+      'gan-jue': { jianfu: 15, zengxin: 20, xietong: 25, chuangxin: 25, puhui: 15 },
+      'gan-diao': { jianfu: 20, zengxin: 20, xietong: 30, chuangxin: 15, puhui: 15 },
+      'gan-tong': { jianfu: 15, zengxin: 15, xietong: 35, chuangxin: 20, puhui: 15 }
+    };
+
+    const tasks = Object.entries(taskDetails).map(([id, detail]) => {
+      const values = taskWeights[id] || { jianfu: 0, zengxin: 0, xietong: 0, chuangxin: 0, puhui: 0 };
+      detail.values = values;
+      return {
+        id,
+        name: detail.name,
+        tagline: detail.tagline,
+        category: detail.domain,
+        summary: detail.summary,
+        values,
+        resilience: detail.resilience || 'M',
+        green: detail.green || 'M'
+      };
+    });
+
     const valueProfiles = {
       overall: { label: '全局', data: { jianfu: 28, zengxin: 23, xietong: 27, chuangxin: 18, puhui: 22 }, baseline: '全局要求：韧性守好风险底线，绿色统筹推进“双碳”目标。' },
       '民生服务': { label: '民生服务', data: { jianfu: 33, zengxin: 10, xietong: 21, chuangxin: 14, puhui: 30 }, baseline: domainConfigs[0].baseline },
@@ -1238,6 +1619,112 @@
       '社会治理': { label: '社会治理', data: { jianfu: 16, zengxin: 16, xietong: 33, chuangxin: 22, puhui: 23 }, baseline: domainConfigs[2].baseline },
       '政府效能': { label: '政府效能', data: { jianfu: 17, zengxin: 18, xietong: 30, chuangxin: 20, puhui: 15 }, baseline: domainConfigs[3].baseline }
     };
+
+    const dimensionOrder = ['jianfu', 'zengxin', 'xietong', 'chuangxin', 'puhui'];
+
+    const valueNarratives = {
+      jianfu: {
+        label: '减负',
+        cardSubtitle: '效率到人本',
+        headline: '减负 · 从效率提升到人本回归',
+        summary: '以公共价值和行为经济学为指引，把群众与基层从繁琐心力中解放出来，让技术真正做到“主动服务、免申即享”。',
+        shifts: [
+          '体验减负 → 心智减负：把复杂封装在后台，让群众少操心、少担忧。',
+          '需求响应 → 主动服务：从“人找服务”跨越到“服务找人、免申即享”。',
+          '前端止血 → 源头治本：压减多头报送和重复采集，为基层“真减负”。'
+        ],
+        metrics: [
+          '综合减负指数 C_DR：综合衡量时间、材料、认知、操作四类成本节约。',
+          '主动服务覆盖率 P_SC：免申即享核心事项覆盖度，检验主动触达能力。',
+          '基层负担压减率 G_BR：改革前后基层填报字段压减幅度。'
+        ],
+        quote: '“减负不是快一点，而是把心力还给群众与基层。”',
+        focus: '第一波样板：敢生、敢病、敢走配合敢调的“一张表”，把主动服务和源头减负真正落地。'
+      },
+      zengxin: {
+        label: '增信',
+        cardSubtitle: '以证到以数',
+        headline: '增信 · 从“以证为信”到“以数为信”的社会契约',
+        summary: '以信息经济学和制度经济学为底层，打造权威、可信、可追溯的数据基础设施，让数据成为流动的信用资产。',
+        shifts: [
+          '以证为信 → 以数为信：用动态、多维、可验证的数据取代静态凭证。',
+          '守门审批 → 信任运营：政府从“审批者”转型为社会信用体系的运营者与守护者。',
+          '单向证明 → 授权可控：个人与企业掌握数据主权，授权可查可撤。'
+        ],
+        metrics: [
+          '经济信用赋能指数 EC_EI：衡量数据信用融资渗透率与融资成本下降幅度。',
+          '流程与治理可信度 T_PG：关键业务链上可溯率与无感监管发现率。',
+          '数据权利保障指数 DP_PI：数据安全事件发生率与“我的数据我做主”授权可控率。'
+        ],
+        quote: '“信任要像水和电一样，低成本、高效率地流动。”',
+        focus: '敢贷、敢管、敢农是首批样板，绿电算力与数据资产质押让四川的优势产业“增信即增值”。'
+      },
+      xietong: {
+        label: '协同',
+        cardSubtitle: '共享到融合',
+        headline: '协同 · 从数据共享到业务融合的整体智治',
+        summary: '用系统论与网络效应把“接力赛”式的数据共享升级为“交响乐”式的业务融合，打造1+1>2的整体政府。',
+        shifts: [
+          '串联传递 → 并联协作：让跨部门“一件事”形成实时闭环。',
+          '条块分治 → 整体智治：省市县乡村五级同频响应、共享同一事实底板。',
+          '单域治理 → 跨域共治：成渝一体化、应急联动成为常态机制。'
+        ],
+        metrics: [
+          '横向协同度 H_CI：跨部门并联率与共享请求满足及时率。',
+          '纵向贯通度 V_TI：指令“一键达”耗时与基层数据一次采集率。',
+          '区域协同度 R_CI：成渝通办事项深度与跨区域应急响应时间。'
+        ],
+        quote: '“从孤立打井到交响协同，政府才真正有整体战斗力。”',
+        focus: '敢行、敢救、敢决、敢统是协同价值的“指挥所”，成渝一体化与一网统管是优先突破口。'
+      },
+      chuangxin: {
+        label: '创新',
+        cardSubtitle: '供给到生态',
+        headline: '创新 · 从政府供给到生态共建的动能转换',
+        summary: '政府专注搭建低门槛、高保障的平台，把公共数据、能力组件和可信算力变成社会创新的“阳光、土壤和水分”。',
+        shifts: [
+          '政府包办 → 平台赋能：能力工具箱、天府数智向社会开放。',
+          '封闭线性 → 开放指数：用揭榜挂帅、沙盒监管释放指数级创新。',
+          '一次性项目 → 持续生态：数据要素运营、尽职免责让创新可持续。'
+        ],
+        metrics: [
+          '平台开放与能力复用率 P_OR：开放API调用量与标准组件复用率。',
+          '生态参与及活跃度 E_AA：生态开发者增长率与数据驱动新增产值。',
+          '制度创新与成果转化率 I_CT：沙盒项目数量与揭榜成果落地率。'
+        ],
+        quote: '“政府提供阳光、土壤和水，社会才能长出森林般的创新物种。”',
+        focus: '敢调的资源统筹、敢扩的绿色直通车、敢决的价值仪表盘，都要依托开放平台和组件银行。'
+      },
+      puhui: {
+        label: '普惠',
+        cardSubtitle: '鸿沟到包容',
+        headline: '普惠 · 跨越数字鸿沟的公平守望',
+        summary: '以数字包容理念确保“技术进步一步，温度跟进一步”，让老幼弱群体、边远地区与低收入人群都能平等享受数字红利。',
+        shifts: [
+          '效率优先 → 公平优先：把120%的力气用在20%的弱势群体上。',
+          '线上唯一 → 双轨兜底：数字服务与人工慢通道并行不悖。',
+          '普遍供给 → 精准滴灌：针对“一老一小”、边远地区、低收入群体实施定制方案。'
+        ],
+        metrics: [
+          '特殊群体服务可及性 A_SG：无障碍达标率与线下兜底覆盖率。',
+          '区域与城乡机会均等度 E_RU：城乡核心服务使用率差异系数。',
+          '发展包容性与数字赋智 I_DE：重点群体数字技能培训覆盖率与满意度。'
+        ],
+        quote: '“技术每前进一步，公平保障都要跟进一步。”',
+        focus: '敢养、敢病、敢学、敢农把“数字关爱、数字山海、数字赋智”落在实处。'
+      }
+    };
+
+    let currentDimension = 'jianfu';
+
+    const valueCardsContainer = document.getElementById('value-cards');
+    const dimensionPanel = document.getElementById('dimension-panel');
+    const dimensionSwitcher = document.getElementById('dimension-switcher');
+    const dimensionInsight = document.getElementById('dimension-insight');
+    const matrixBody = document.getElementById('matrix-body');
+
+    const axisKeys = ['jianfu', 'zengxin', 'xietong', 'chuangxin', 'puhui'];
+    const axisLabel = { jianfu: '减负', zengxin: '增信', xietong: '协同', chuangxin: '创新', puhui: '普惠' };
 
     const nodeContainers = document.querySelectorAll('.domain-column');
     nodeContainers.forEach(column => {
@@ -1271,6 +1758,146 @@
     }
 
 
+    function formatBaseline(level) {
+      const map = { H: '高', M: '中', L: '低' };
+      return map[level] || level || '-';
+    }
+
+    function buildMatrix() {
+      if (!matrixBody) return;
+      matrixBody.innerHTML = '';
+      Object.entries(valueProfiles).forEach(([domain, profile]) => {
+        if (domain === 'overall') return;
+        const chips = ['jianfu', 'zengxin', 'xietong', 'chuangxin', 'puhui']
+          .map(key => `<span class=\"matrix-chip\">${axisLabel[key]} ${profile.data[key]}%</span>`).join('');
+        const config = domainConfigs.find(item => item.id === domain);
+        const levelOrder = { H: 3, M: 2, L: 1 };
+        let resilienceLevel = 'L';
+        let greenLevel = 'L';
+        let representatives = '';
+        if (config) {
+          representatives = config.tasks.slice(0, 3).map(id => taskDetails[id].name).join('、');
+          if (config.tasks.length > 3) {
+            representatives += ' 等';
+          }
+          config.tasks.forEach(id => {
+            const detail = taskDetails[id];
+            if (detail && detail.resilience && levelOrder[detail.resilience] > levelOrder[resilienceLevel]) {
+              resilienceLevel = detail.resilience;
+            }
+            if (detail && detail.green && levelOrder[detail.green] > levelOrder[greenLevel]) {
+              greenLevel = detail.green;
+            }
+          });
+        }
+        const profileBaseline = profile && profile.baseline ? profile.baseline : '';
+        const configBaseline = config && config.baseline ? config.baseline : '';
+        const baselineNote = profileBaseline || configBaseline;
+        const representativeText = baselineNote ? `${representatives}｜${baselineNote}` : representatives;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${profile.label}</td>
+          <td>${chips}</td>
+          <td>韧性 ${formatBaseline(resilienceLevel)}</td>
+          <td>绿色 ${formatBaseline(greenLevel)}</td>
+          <td>${representativeText || '-'}</td>
+        `;
+        matrixBody.appendChild(row);
+      });
+    }
+
+    function renderValueCards() {
+      if (!valueCardsContainer) return;
+      valueCardsContainer.innerHTML = '';
+      dimensionOrder.forEach(id => {
+        const narrative = valueNarratives[id];
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'value-card';
+        button.dataset.dimension = id;
+        button.innerHTML = `<strong>${narrative.label}</strong>${narrative.cardSubtitle}`;
+        if (id === currentDimension) button.classList.add('active');
+        button.addEventListener('click', () => setDimension(id));
+        valueCardsContainer.appendChild(button);
+      });
+    }
+
+    function renderDimensionSwitcher() {
+      if (!dimensionSwitcher) return;
+      dimensionSwitcher.innerHTML = '';
+      dimensionOrder.forEach(id => {
+        const narrative = valueNarratives[id];
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.dimension = id;
+        button.textContent = narrative.label;
+        if (id === currentDimension) button.classList.add('active');
+        button.addEventListener('click', () => setDimension(id));
+        dimensionSwitcher.appendChild(button);
+      });
+    }
+
+    function setDimension(dimensionId, options = {}) {
+      currentDimension = dimensionId;
+      if (valueCardsContainer) {
+        valueCardsContainer.querySelectorAll('button').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.dimension === dimensionId);
+        });
+      }
+      if (dimensionSwitcher) {
+        dimensionSwitcher.querySelectorAll('button').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.dimension === dimensionId);
+        });
+      }
+      renderDimensionPanel(dimensionId);
+      renderDimensionInsights(dimensionId);
+    }
+
+    function renderDimensionPanel(dimensionId) {
+      if (!dimensionPanel) return;
+      const narrative = valueNarratives[dimensionId];
+      dimensionPanel.innerHTML = `
+        <span class="dimension-subtitle">${narrative.cardSubtitle}</span>
+        <h3>${narrative.headline}</h3>
+        <p class="dimension-summary">${narrative.summary}</p>
+        <div class="dimension-block">
+          <h4>范式跃迁</h4>
+          <ul class="shift-list">${narrative.shifts.map(item => `<li>${item}</li>`).join('')}</ul>
+        </div>
+        ${narrative.quote ? `<blockquote>${narrative.quote}</blockquote>` : ''}
+        <p class="dimension-focus">${narrative.focus}</p>
+      `;
+    }
+
+    function renderDimensionInsights(dimensionId) {
+      if (!dimensionInsight) return;
+      const narrative = valueNarratives[dimensionId];
+      const topTasks = [...tasks].sort((a, b) => (b.values[dimensionId] || 0) - (a.values[dimensionId] || 0)).slice(0, 3);
+      const taskHtml = topTasks.map((task, index) => `
+        <button type="button" class="task-chip" data-task="${task.id}">
+          <h4>${index + 1}. ${task.name}<span>${task.values[dimensionId]}%</span></h4>
+          <p>${task.tagline}</p>
+        </button>`).join('');
+      const metricsHtml = narrative.metrics.map(item => `<li>${item}</li>`).join('');
+      dimensionInsight.innerHTML = `
+        <div class="insight-tasks">${taskHtml}</div>
+        <div class="insight-metrics">
+          <h4>领导最该盯的 KPI</h4>
+          <ul>${metricsHtml}</ul>
+        </div>
+      `;
+      dimensionInsight.querySelectorAll('.task-chip').forEach(button => {
+        button.addEventListener('click', () => {
+          renderStory(button.dataset.task);
+        });
+      });
+    }
+
+    renderValueCards();
+    renderDimensionSwitcher();
+    setDimension(currentDimension, { suppressScroll: true, suppressMobile: true });
+    buildMatrix();
+
     function renderStory(taskId, options = {}) {
       const detail = taskDetails[taskId];
       if (!detail) return;
@@ -1294,7 +1921,9 @@
       newFlowBox.innerHTML = detail.newFlow.map(item => `<li>${item}</li>`).join('');
 
       drawRadar(detail.domain);
-      baselineCallout.textContent = valueProfiles[detail.domain]?.baseline || domainConfig?.baseline || '';
+      const profileBaseline = valueProfiles[detail.domain] && valueProfiles[detail.domain].baseline ? valueProfiles[detail.domain].baseline : '';
+      const domainBaseline = domainConfig && domainConfig.baseline ? domainConfig.baseline : '';
+      baselineCallout.textContent = profileBaseline || domainBaseline || '';
       if (isMobileView()) {
         if (!suppressMobile) {
           openMobileLayer(detail);
@@ -1394,8 +2023,6 @@
 
     const canvas = document.getElementById('value-radar');
     const ctx = canvas.getContext('2d');
-    const axes = ['jianfu', 'zengxin', 'xietong', 'chuangxin', 'puhui'];
-    const axisLabel = { jianfu: '减负', zengxin: '增信', xietong: '协同', chuangxin: '创新', puhui: '普惠' };
 
     function drawRadar(domainKey) {
       const profile = valueProfiles[domainKey] || valueProfiles.overall;
@@ -1405,6 +2032,7 @@
       const centerX = w / 2;
       const centerY = h / 2;
       const maxRadius = Math.min(w, h) / 2 - 40;
+      const axes = axisKeys;
 
       ctx.clearRect(0, 0, w, h);
       ctx.font = '12px "Noto Sans SC"';
@@ -1462,13 +2090,11 @@
 
     function initDefault() {
       const defaultTask = 'gan-sheng';
+      setDimension(currentDimension, { suppressScroll: true, suppressMobile: true });
       renderStory(defaultTask, { suppressMobile: true, suppressScroll: true });
       if (!isMobileView()) {
         document.querySelector(`.node[data-task="${defaultTask}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-      document.querySelectorAll('#domain-switcher button').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.domain === '民生服务');
-      });
     }
 
     initDefault();
