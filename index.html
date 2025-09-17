@@ -529,6 +529,129 @@
       color: var(--muted);
     }
 
+    .mobile-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: none;
+      flex-direction: column;
+      background: rgba(5, 7, 12, 0.88);
+      backdrop-filter: blur(14px);
+      color: var(--ink);
+    }
+
+    .mobile-layer.active {
+      display: flex;
+    }
+
+    .mobile-layer header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid rgba(79, 141, 255, 0.24);
+      background: rgba(10, 16, 28, 0.92);
+    }
+
+    .mobile-layer header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--soft-ink);
+    }
+
+    .mobile-layer button.close {
+      border: none;
+      background: rgba(79, 141, 255, 0.18);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+    }
+
+    .mobile-layer button.close:active {
+      transform: translateY(1px);
+    }
+
+    .mobile-layer .body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem 1.4rem 2.4rem;
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .mobile-layer .summary {
+      background: rgba(14, 20, 36, 0.9);
+      border: 1px solid rgba(79, 141, 255, 0.2);
+      border-radius: 18px;
+      padding: 1.4rem;
+    }
+
+    .mobile-layer .summary h4 {
+      margin: 0 0 0.6rem;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .mobile-layer .summary p {
+      margin: 0;
+      font-size: 0.96rem;
+      color: var(--soft-ink);
+    }
+
+    .mobile-layer .block {
+      background: rgba(12, 18, 30, 0.9);
+      border-radius: 18px;
+      border: 1px solid rgba(79, 141, 255, 0.16);
+      padding: 1.3rem;
+    }
+
+    .mobile-layer .block h4 {
+      margin: 0 0 0.6rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .mobile-layer .block ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--soft-ink);
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.92rem;
+    }
+
+    .mobile-layer .dialogues {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .mobile-layer .dialogues .bubble {
+      font-size: 0.95rem;
+    }
+
+    .mobile-layer .flow-column {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .mobile-layer .flow-column ol {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--soft-ink);
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.9rem;
+    }
+
     .insight-follow ul {
       margin: 0;
       padding: 0 0 0 1.1rem;
@@ -754,6 +877,16 @@
       </div>
     </section>
   </main>
+
+  <div class="mobile-layer" id="mobile-layer" role="dialog" aria-modal="true" aria-hidden="true">
+    <header>
+      <h3 id="mobile-layer-heading">价值节点</h3>
+      <button type="button" class="close" id="mobile-layer-close">关闭</button>
+    </header>
+    <div class="body" id="mobile-layer-body">
+      <!-- 动态填充 -->
+    </div>
+  </div>
 
   <footer>© 四川省数字政府价值范式转型项目 · 内部路演材料</footer>
 
@@ -1127,10 +1260,21 @@
     const oldFlowBox = document.getElementById('old-flow');
     const newFlowBox = document.getElementById('new-flow');
     const baselineCallout = document.getElementById('baseline-callout');
+    const mobileLayer = document.getElementById('mobile-layer');
+    const mobileLayerBody = document.getElementById('mobile-layer-body');
+    const mobileLayerHeading = document.getElementById('mobile-layer-heading');
+    const mobileLayerClose = document.getElementById('mobile-layer-close');
+    const mobileMedia = window.matchMedia('(max-width: 900px)');
 
-    function renderStory(taskId) {
+    function isMobileView() {
+      return mobileMedia.matches;
+    }
+
+
+    function renderStory(taskId, options = {}) {
       const detail = taskDetails[taskId];
       if (!detail) return;
+      const { suppressScroll = false, suppressMobile = false } = options;
       const domainConfig = domainConfigs.find(item => item.id === detail.domain);
       document.querySelectorAll('.node').forEach(btn => btn.classList.toggle('active', btn.dataset.task === taskId));
       storyPanel.innerHTML = `
@@ -1151,6 +1295,58 @@
 
       drawRadar(detail.domain);
       baselineCallout.textContent = valueProfiles[detail.domain]?.baseline || domainConfig?.baseline || '';
+      if (isMobileView()) {
+        if (!suppressMobile) {
+          openMobileLayer(detail);
+        }
+      } else if (!suppressScroll) {
+        document.getElementById('story').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function openMobileLayer(detail) {
+      mobileLayerHeading.textContent = `${detail.name} · ${detail.tagline}`;
+      mobileLayerBody.innerHTML = `
+        <div class="summary">
+          <h4>价值摘要</h4>
+          <p>${detail.summary}</p>
+          <p style="margin-top:0.4rem;">${detail.valueStory}</p>
+          <p style="margin-top:0.4rem; font-size:0.9rem; color:var(--muted);">韧性：${formatBaseline(detail.resilience)} ｜ 绿色：${formatBaseline(detail.green)}</p>
+        </div>
+        <div class="block">
+          <h4>量化指标</h4>
+          <ul>${detail.metrics.map(item => `<li>${item}</li>`).join('')}</ul>
+        </div>
+        <div class="block">
+          <h4>场景对话</h4>
+          <div class="dialogues">${detail.dialogues.map(bubble => `<div class=\"bubble ${bubble.tone}\"><span>${bubble.role}</span>${bubble.line}</div>`).join('')}</div>
+        </div>
+        <div class="block flow-column">
+          <h4>旧流程</h4>
+          <ol>${detail.oldFlow.map(item => `<li>${item}</li>`).join('')}</ol>
+        </div>
+        <div class="block flow-column">
+          <h4>新机制</h4>
+          <ol>${detail.newFlow.map(item => `<li>${item}</li>`).join('')}</ol>
+        </div>
+      `;
+      mobileLayer.classList.add('active');
+      mobileLayer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        try {
+          mobileLayerClose.focus({ preventScroll: true });
+        } catch (err) {
+          mobileLayerClose.focus();
+        }
+      }, 50);
+    }
+
+    function closeMobileLayer() {
+      if (!mobileLayer.classList.contains('active')) return;
+      mobileLayer.classList.remove('active');
+      mobileLayer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
     }
 
     document.querySelectorAll('.node').forEach(button => {
@@ -1158,6 +1354,29 @@
         renderStory(button.dataset.task);
       });
     });
+
+    mobileLayerClose.addEventListener('click', closeMobileLayer);
+    mobileLayer.addEventListener('click', event => {
+      if (event.target === mobileLayer) {
+        closeMobileLayer();
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        closeMobileLayer();
+      }
+    });
+
+    const handleMobileChange = event => {
+      if (!event.matches) {
+        closeMobileLayer();
+      }
+    };
+    if (mobileMedia.addEventListener) {
+      mobileMedia.addEventListener('change', handleMobileChange);
+    } else if (mobileMedia.addListener) {
+      mobileMedia.addListener(handleMobileChange);
+    }
 
     const switcher = document.getElementById('domain-switcher');
     Object.keys(valueProfiles).forEach(key => {
@@ -1243,8 +1462,10 @@
 
     function initDefault() {
       const defaultTask = 'gan-sheng';
-      renderStory(defaultTask);
-      document.querySelector(`.node[data-task="${defaultTask}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+      renderStory(defaultTask, { suppressMobile: true, suppressScroll: true });
+      if (!isMobileView()) {
+        document.querySelector(`.node[data-task="${defaultTask}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
       document.querySelectorAll('#domain-switcher button').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.domain === '民生服务');
       });
