@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>从打井到建网 · 四川数字政府价值范式路演</title>
+  <style>
+    :root {
+      --ink: #f5f7fd;
+      --soft-ink: rgba(245, 247, 253, 0.72);
+      --deep: #0c1020;
+      --accent: #4f8dff;
+      --accent-2: #63e6be;
+      --accent-3: #ffd166;
+      --muted: #95a1c9;
+      --card: rgba(16, 24, 48, 0.72);
+      --border: rgba(255, 255, 255, 0.08);
+      --danger: #ff6b6b;
+      font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(79, 141, 255, 0.22), transparent 45%),
+                  radial-gradient(circle at 80% 0%, rgba(99, 230, 190, 0.24), transparent 46%),
+                  #05060c;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(5, 7, 12, 0.85);
+      border-bottom: 1px solid rgba(79, 141, 255, 0.24);
+    }
+
+    header .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 3vw;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+    }
+
+    .brand span {
+      background: linear-gradient(135deg, #4f8dff, #63e6be);
+      color: var(--deep);
+      border-radius: 12px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--muted);
+      overflow-x: auto;
+      padding-bottom: 0.2rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    nav a { position: relative; padding-bottom: 0.35rem; }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #4f8dff, #63e6be);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+    nav a:hover,
+    nav a:focus { color: var(--ink); }
+    nav a:hover::after,
+    nav a:focus::after { transform: scaleX(1); }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3vw 6rem;
+    }
+
+    section { margin-top: 4.5rem; }
+
+    .hero {
+      margin-top: 2.5rem;
+      border-radius: 28px;
+      padding: 3.5rem;
+      background: linear-gradient(135deg, rgba(10, 16, 36, 0.92), rgba(22, 38, 72, 0.78));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 15% 20%, rgba(79, 141, 255, 0.45), transparent 45%),
+                  radial-gradient(circle at 80% 50%, rgba(255, 209, 102, 0.25), transparent 50%);
+      opacity: 0.8;
+      pointer-events: none;
+      animation: aurora 16s ease-in-out infinite alternate;
+    }
+
+    @keyframes aurora {
+      from { transform: translate(-2%, -1%) scale(1); }
+      to { transform: translate(2%, 1%) scale(1.05); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 3.5vw + 1rem, 3.6rem);
+      font-weight: 600;
+      line-height: 1.25;
+      margin: 0 0 1.5rem;
+      max-width: 18ch;
+    }
+
+    .hero p {
+      max-width: 46ch;
+      color: var(--soft-ink);
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .hero .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+      color: var(--accent-3);
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.6rem;
+      margin-top: 2.2rem;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 20px;
+      padding: 1.6rem;
+      background: rgba(15, 22, 44, 0.8);
+      border: 1px solid rgba(99, 230, 190, 0.16);
+      color: var(--soft-ink);
+      min-height: 160px;
+    }
+
+    .hero-card strong { color: #63e6be; display: block; margin-bottom: 0.8rem; }
+
+    h2 {
+      font-size: clamp(1.8rem, 2.2vw + 0.8rem, 2.4rem);
+      font-weight: 600;
+      margin-bottom: 1.4rem;
+    }
+
+    .section-intro {
+      max-width: 64ch;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .question-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 1.6rem;
+      border: 1px solid var(--border);
+    }
+
+    .question-card h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .question-card p { margin: 0; color: var(--soft-ink); }
+
+    .value-network {
+      position: relative;
+      display: grid;
+      gap: 2.4rem;
+    }
+
+    .network-shell {
+      display: grid;
+      grid-template-columns: 220px 1fr 1fr 1fr 1fr;
+      gap: 1.4rem;
+      align-items: stretch;
+    }
+
+    .value-core {
+      position: relative;
+      background: linear-gradient(180deg, rgba(12, 18, 36, 0.92), rgba(10, 16, 32, 0.86));
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(79, 141, 255, 0.32);
+      box-shadow: 0 18px 36px rgba(15, 24, 48, 0.35);
+    }
+
+    .value-core::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 209, 102, 0.18);
+      pointer-events: none;
+    }
+
+    .value-core h3 { margin: 0 0 1rem; font-size: 1.35rem; }
+    .value-core p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+    .domain-column {
+      position: relative;
+      background: rgba(14, 20, 36, 0.78);
+      border-radius: 24px;
+      padding: 1.6rem 1.3rem;
+      border: 1px solid rgba(79, 141, 255, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .domain-column h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--soft-ink);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .domain-column h3 span {
+      color: var(--muted);
+      font-size: 0.7rem;
+    }
+
+    .nodes { display: grid; gap: 0.75rem; }
+
+    .node {
+      border: none;
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      text-align: left;
+      color: var(--ink);
+      background: linear-gradient(135deg, rgba(79, 141, 255, 0.16), rgba(79, 141, 255, 0.05));
+      border: 1px solid rgba(79, 141, 255, 0.24);
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .node strong { display: block; font-size: 1.05rem; margin-bottom: 0.25rem; }
+
+    .node:hover {
+      transform: translateY(-3px);
+      border-color: rgba(99, 230, 190, 0.42);
+      box-shadow: 0 14px 30px rgba(79, 141, 255, 0.18);
+    }
+
+    .node.active {
+      background: linear-gradient(135deg, rgba(99, 230, 190, 0.28), rgba(79, 141, 255, 0.32));
+      border-color: rgba(99, 230, 190, 0.6);
+      box-shadow: 0 18px 32px rgba(79, 141, 255, 0.38);
+    }
+
+    .story-panel {
+      background: rgba(12, 18, 32, 0.85);
+      border-radius: 24px;
+      border: 1px solid rgba(79, 141, 255, 0.24);
+      padding: 2rem;
+    }
+
+    .story-panel h3 { margin: 0 0 0.5rem; font-size: 1.4rem; }
+    .story-panel .domain-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .story-panel p { margin: 0.6rem 0; color: var(--soft-ink); }
+
+    .metrics-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: grid;
+      gap: 0.6rem;
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .metrics-list li {
+      background: rgba(79, 141, 255, 0.12);
+      border-radius: 12px;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid rgba(79, 141, 255, 0.18);
+    }
+
+    .story-lab {
+      background: rgba(10, 16, 28, 0.88);
+      border-radius: 24px;
+      border: 1px solid rgba(79, 141, 255, 0.18);
+      padding: 2.2rem;
+      display: grid;
+      gap: 2rem;
+    }
+
+    .dialogue-cluster {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .bubble {
+      max-width: 56ch;
+      padding: 1rem 1.2rem;
+      border-radius: 16px;
+      position: relative;
+      background: rgba(79, 141, 255, 0.16);
+      border: 1px solid rgba(79, 141, 255, 0.24);
+      color: var(--soft-ink);
+    }
+
+    .bubble span { display: block; color: var(--accent-3); font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+
+    .bubble.citizen { border-color: rgba(79, 141, 255, 0.36); }
+    .bubble.official { border-color: rgba(99, 230, 190, 0.32); background: rgba(99, 230, 190, 0.12); }
+    .bubble.cadre { border-color: rgba(255, 209, 102, 0.32); background: rgba(255, 209, 102, 0.12); }
+
+    .flow-board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .flow-card {
+      border-radius: 18px;
+      padding: 1.4rem;
+      border: 1px solid rgba(79, 141, 255, 0.16);
+      background: rgba(12, 18, 32, 0.92);
+    }
+
+    .flow-card h4 { margin: 0 0 0.6rem; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+    .flow-card ol { margin: 0; padding-left: 1.1rem; color: var(--soft-ink); font-size: 0.92rem; }
+
+    .value-dna {
+      display: grid;
+      gap: 2rem;
+      background: rgba(10, 16, 26, 0.88);
+      border-radius: 24px;
+      border: 1px solid rgba(79, 141, 255, 0.18);
+      padding: 2rem;
+    }
+
+    .dna-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .switcher button {
+      border: 1px solid rgba(79, 141, 255, 0.22);
+      background: transparent;
+      color: var(--soft-ink);
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+    }
+
+    .switcher button.active {
+      background: linear-gradient(135deg, rgba(79, 141, 255, 0.32), rgba(99, 230, 190, 0.28));
+      border-color: rgba(99, 230, 190, 0.45);
+      color: var(--ink);
+      box-shadow: 0 12px 24px rgba(79, 141, 255, 0.25);
+    }
+
+    canvas { max-width: 100%; }
+
+    .dna-body {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      align-items: center;
+    }
+
+    .legend {
+      display: grid;
+      gap: 0.8rem;
+      font-size: 0.92rem;
+      color: var(--soft-ink);
+    }
+
+    .legend-item { display: flex; gap: 0.5rem; align-items: center; }
+
+    .legend-item span {
+      display: inline-flex;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .baseline-callout {
+      background: rgba(79, 141, 255, 0.12);
+      border-radius: 16px;
+      padding: 1.2rem;
+      border: 1px solid rgba(79, 141, 255, 0.2);
+      color: var(--soft-ink);
+    }
+
+    .engine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .engine-card {
+      background: rgba(14, 20, 34, 0.84);
+      border-radius: 20px;
+      border: 1px solid rgba(79, 141, 255, 0.2);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .engine-card h3 { margin: 0; font-size: 1.05rem; color: var(--ink); }
+    .engine-card p { margin: 0; color: var(--soft-ink); font-size: 0.93rem; }
+
+    .insight {
+      background: rgba(10, 16, 28, 0.9);
+      border-radius: 24px;
+      border: 1px solid rgba(79, 141, 255, 0.22);
+      padding: 2.2rem;
+      display: grid;
+      gap: 2rem;
+    }
+
+    .insight-grid {
+      display: grid;
+      gap: 1.4rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .insight-grid article {
+      background: rgba(14, 20, 34, 0.84);
+      border-radius: 18px;
+      border: 1px solid rgba(79, 141, 255, 0.2);
+      padding: 1.4rem;
+      color: var(--soft-ink);
+    }
+
+    .insight-grid h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .insight-follow {
+      background: rgba(79, 141, 255, 0.12);
+      border-radius: 16px;
+      border: 1px solid rgba(79, 141, 255, 0.26);
+      padding: 1.4rem;
+      color: var(--soft-ink);
+    }
+
+    .insight-follow h4 {
+      margin: 0 0 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .insight-follow ul {
+      margin: 0;
+      padding: 0 0 0 1.1rem;
+      display: grid;
+      gap: 0.6rem;
+      color: var(--soft-ink);
+      font-size: 0.92rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      margin: 4rem 0 2rem;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 1080px) {
+      .network-shell {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .value-core { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 720px) {
+      header .inner { flex-direction: column; align-items: flex-start; }
+      nav { width: 100%; }
+      .hero { padding: 2rem; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .network-shell { grid-template-columns: 1fr; gap: 1.2rem; }
+      .value-core { order: -1; padding: 1.6rem; }
+      .domain-column { padding: 1.3rem; }
+      .story-panel, .story-lab, .value-dna, .insight { padding: 1.6rem; }
+      .bubble { font-size: 0.95rem; }
+      .flow-board { grid-template-columns: 1fr; }
+      .switcher { justify-content: flex-start; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <div class="brand"><span>V4</span>从打井到建网</div>
+      <nav>
+        <a href="#home">价值宣言</a>
+        <a href="#why">战略追问</a>
+        <a href="#network">价值脉络</a>
+        <a href="#story">场景剧本</a>
+        <a href="#dna">价值罗盘</a>
+        <a href="#engine">支撑引擎</a>
+        <a href="#insight">领导启发</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="tagline">从孤立打井 → 系统建网</div>
+      <h1>用价值网重构四川数字政府</h1>
+      <p>我们不再以“上线多少系统”衡量成败，而是以减负、增信、协同、创新、普惠的实效来验证每一笔投入。十八项“敢系列”任务组成价值网络，让政府、企业、群众、基层都敢用、敢信、敢共建。</p>
+      <div class="hero-grid">
+        <div class="hero-card">
+          <strong>价值闭环</strong>
+          VDPT螺旋迭代，以价值假设驱动数据、流程、技术的同步重构，形成“黄灯/红灯”即时告警的持续运营体系。
+        </div>
+        <div class="hero-card">
+          <strong>价值网络</strong>
+          18 个“敢系列”节点组成价值网络，帮助领导一眼看清群众体感、企业信心与部门协同的真实成效。
+        </div>
+        <div class="hero-card">
+          <strong>生态共建</strong>
+          川慧办、川商通统一入口 + 组件银行 + 数据信托，把政府搭台转化为生态共建，释放开放创新势能。
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>三个追问 · 价值范式的起点</h2>
+      <p class="section-intro">一场范式转换，始于最直白的追问。我们让领导、基层、群众的真实困惑登上首页，也让这份方案成为“共答题”。</p>
+      <div class="question-grid">
+        <div class="question-card">
+          <h3>领导问：我们投入巨大，为何群众感受不深？</h3>
+          <p>过去的项目制只关注建成率，不追问转化率。价值网用“减负/增信”仪表盘把群众体感变成硬指标。</p>
+        </div>
+        <div class="question-card">
+          <h3>基层问：系统越来越多，为什么我的负担反而更重？</h3>
+          <p>孤立打井导致填报、重复流程高企。我们通过组件化、联办机制，实现“敢统”“敢调”真正为基层减压。</p>
+        </div>
+        <div class="question-card">
+          <h3>群众问：不敢生、不敢病、不敢办事，数字政府真能改变吗？</h3>
+          <p>“敢系列”讲的是一个个真实场景的脱胎换骨：出生72小时的无感联办、山洪预警的秒级触达、企业融资的信用放款。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="value-network" id="network">
+      <h2>价值脉络图 · 18 节点织成一张网</h2>
+      <p class="section-intro">从价值核到四大领域，每个节点都携带“场景→机制→制度→指标”剧本。点击任意任务，右侧即刻呈现其价值故事。</p>
+      <div class="network-shell">
+        <div class="value-core">
+          <h3>价值核（Value Core）</h3>
+          <p>五维价值（减负 / 增信 / 协同 / 创新 / 普惠）+ 韧性、绿色双底线，构成四川数字政府的“价值DNA”。所有任务围绕此核运转。</p>
+        </div>
+        <div class="domain-column" data-domain="民生服务">
+          <h3><span>生活护航</span>民生服务</h3>
+          <div class="nodes"></div>
+        </div>
+        <div class="domain-column" data-domain="营商环境">
+          <h3><span>信心重启</span>营商环境</h3>
+          <div class="nodes"></div>
+        </div>
+        <div class="domain-column" data-domain="社会治理">
+          <h3><span>协同共治</span>社会治理</h3>
+          <div class="nodes"></div>
+        </div>
+        <div class="domain-column" data-domain="政府效能">
+          <h3><span>自我革命</span>政府效能</h3>
+          <div class="nodes"></div>
+        </div>
+      </div>
+      <aside class="story-panel" id="story-panel">
+        <div class="domain-tag">VALUE BRIEF</div>
+        <h3>点击任意任务节点</h3>
+        <p>按“敢系列”节点探索价值故事，系统会按领域切换价值雷达，展示对应的五维侧重与韧性/绿色要求。</p>
+        <ul class="metrics-list">
+          <li>减负：感知群众跑动、材料、排队是否显著下降</li>
+          <li>增信：数据画像、信用分等是否支撑决策与金融</li>
+          <li>协同/创新/普惠：制度、技术与公平性如何强化</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="story-lab" id="story">
+      <h2>场景剧本 · 听见“不敢”的改变</h2>
+      <div class="dialogue-cluster" id="dialogue-cluster">
+        <div class="bubble citizen"><span>等待故事</span>请选择“敢系列”任务，我们将以群众视角讲述旧痛点与新体验。</div>
+      </div>
+      <div class="flow-board">
+        <div class="flow-card">
+          <h4>旧流程</h4>
+          <ol id="old-flow">
+            <li>点击任务节点，旧流程的堵点将在这里回放。</li>
+          </ol>
+        </div>
+        <div class="flow-card">
+          <h4>新机制</h4>
+          <ol id="new-flow">
+            <li>点击任务节点，新机制与制度保障将在此呈现。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="value-dna" id="dna">
+      <div class="dna-head">
+        <div>
+          <h2>价值罗盘 · 让“指标”真正照向价值</h2>
+          <p class="section-intro">雷达图实时展示所选领域在五维价值上的侧重，韧性与绿色作为强制底线同步提示。</p>
+        </div>
+        <div class="switcher" id="domain-switcher"></div>
+      </div>
+      <div class="dna-body">
+        <canvas id="value-radar" width="340" height="320"></canvas>
+        <div class="legend" id="legend">
+          <div class="legend-item"><span style="background:#4f8dff"></span>减负 · 办事提速、材料减项、认知门槛降低</div>
+          <div class="legend-item"><span style="background:#63e6be"></span>增信 · 数据画像、信用传导、风险可控</div>
+          <div class="legend-item"><span style="background:#8c54ff"></span>协同 · 跨部门联动、机制共建</div>
+          <div class="legend-item"><span style="background:#ffd166"></span>创新 · 新技术赋能流程再造</div>
+          <div class="legend-item"><span style="background:#ff6b6b"></span>普惠 · 关注弱势、适老适幼、城乡均衡</div>
+        </div>
+      </div>
+      <div class="baseline-callout" id="baseline-callout">
+        请选择领域查看韧性与绿色要求如何落在具体指标上。
+      </div>
+    </section>
+
+    <section id="engine">
+      <h2>支撑引擎 · “政府搭台，生态唱戏”</h2>
+      <p class="section-intro">我们把底座、机制、能力组件做成“开放平台”，让社会、企业、基层共同在价值网络上创新。</p>
+      <div class="engine-grid">
+        <div class="engine-card">
+          <h3>统一入口 · 川慧办 / 川商通</h3>
+          <p>双门户统一身份、支付、电子证照、消息推送。以“生命起点”“企业成长”场景套餐取代碎片化入口。</p>
+        </div>
+        <div class="engine-card">
+          <h3>组件银行 · 能力即服务</h3>
+          <p>身份核验、电子签章、信用评分、AI客服、RPA、适老大字模式等拆成可复用组件，一键接入，数据统一治理。</p>
+        </div>
+        <div class="engine-card">
+          <h3>数据信托 · 可信共享</h3>
+          <p>以信托机制解决数据“敢用”难题：权责归属清晰、收益共享、第三方托管，率先在文创、绿电等领域落地。</p>
+        </div>
+        <div class="engine-card">
+          <h3>VDPT 螺旋 · 快速试错</h3>
+          <p>价值(Value)→数据(Data)→流程(Process)→技术(Technology)循环迭代，指标黄灯即启动复盘实验室，确保不断回归价值。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="insight" id="insight">
+      <h2>领导启发 · 三个关于数字政府的新视角</h2>
+      <div class="insight-grid">
+        <article>
+          <h3>01 · 从“建成率”到“价值成效”</h3>
+          <p>用五维价值罗盘和黄灯/红灯机制，倒逼我们只投能减负、能增信、能协同的项目。指标不再是系统上线数量，而是群众体感与企业信心。</p>
+        </article>
+        <article>
+          <h3>02 · 从“部门工程”到“生态共建”</h3>
+          <p>川慧办、川商通是一体化入口，更重要的是组件银行与数据信托，政府提供底座，社会力量补足长尾，让数字政府真正成为平台型治理。</p>
+        </article>
+        <article>
+          <h3>03 · 从“线性推进”到“螺旋迭代”</h3>
+          <p>VDPT 方法论让每次改革都有小步试错、快速回环的机制。我们需要把“先跑通价值，再放大投入”作为数字政府建设的默认选项。</p>
+        </article>
+      </div>
+      <div class="insight-follow">
+        <h4>可立即推动的三个动作</h4>
+        <ul>
+          <li>在本季度工作例会上上线黄灯/红灯仪表盘，把价值指标纳入例会讨论。</li>
+          <li>指定一批“价值架构师+翻译官”复合团队，对三类典型场景开展价值诊断。</li>
+          <li>批准川慧办/川商通下一阶段的组件共建计划，与高校、企业共建共测。</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 四川省数字政府价值范式转型项目 · 内部路演材料</footer>
+
+  <script>
+    const domainConfigs = [
+      {
+        id: '民生服务',
+        motto: '生活护航',
+        color: '#4f8dff',
+        tasks: ['gan-sheng', 'gan-bing', 'gan-zou', 'gan-xue', 'gan-yang', 'gan-zhu', 'gan-qian'],
+        baseline: '韧性中档（灾害/健康联动）、绿色中档（托育、养老设施节能）。'
+      },
+      {
+        id: '营商环境',
+        motto: '信心重启',
+        color: '#63e6be',
+        tasks: ['gan-tou', 'gan-dai', 'gan-kuo', 'gan-nong'],
+        baseline: '韧性中高（供应链、资金风险）、绿色高（产业扩张绿色准入）。'
+      },
+      {
+        id: '社会治理',
+        motto: '协同共治',
+        color: '#ffd166',
+        tasks: ['gan-guan', 'gan-jiu', 'gan-ping', 'gan-xing'],
+        baseline: '韧性高（公共安全、应急响应）、绿色中（区域协同减排）。'
+      },
+      {
+        id: '政府效能',
+        motto: '自我革命',
+        color: '#8c54ff',
+        tasks: ['gan-jue', 'gan-diao', 'gan-tong'],
+        baseline: '韧性高（决策敏捷、组织韧性）、绿色低（内部治理为主）。'
+      }
+    ];
+
+    const taskDetails = {
+      'gan-sheng': {
+        name: '敢生',
+        tagline: '出生即享主动服务',
+        domain: '民生服务',
+        summary: '用一次授权撬动 7 个部门联办，新生命从第一声啼哭开始就由数字政府接力。',
+        valueStory: '减负 40 · 普惠 30 · 协同 15 · 创新 10 · 增信 5。',
+        metrics: ['核心事项 24 小时办结率 ≥95%', '生育津贴 72 小时到账率 ≥90%', '纸质证明提交次数降为 0'],
+        dialogues: [
+          { role: '新手妈妈', tone: 'citizen', line: '宝宝出生两天没出病房，户口、医保、社保卡都在手机里同步完成。' },
+          { role: '产科护士', tone: 'official', line: '电子出生证明一生成，系统就推送任务单，各部门后台并联。' },
+          { role: '托育专员', tone: 'cadre', line: '系统自动匹配普惠托育空位，我们只负责跟家长确认和上门指导。' }
+        ],
+        oldFlow: ['家长先去窗口领取纸质出生证明', '奔走公安、医保、人社多个窗口重复提交材料', '补贴政策靠自查，办理时间动辄数周'],
+        newFlow: ['医院生成电子出生证明即触发联办任务', '后台并联完成户籍、医保、社保卡审批，信息同步川慧办', '72 小时内津贴到账并推送托育资源、疫苗计划'],
+        resilience: 'M',
+        green: 'M'
+      },
+      'gan-bing': {
+        name: '敢病',
+        tagline: '慢病就医与报销一张网',
+        domain: '民生服务',
+        summary: '检查互认、个人健康档案、因病致贫预警，重构“看病难、报销慢”的体验。',
+        valueStory: '减负 35 · 协同 25 · 创新 20 · 普惠 10 · 增信 10。',
+        metrics: ['省内检查互认率 ≥90%', '住院费用“出院即报”即时结算率 ≥98%', '因病致贫预警命中率 ≥90%'],
+        dialogues: [
+          { role: '糖尿病患者', tone: 'citizen', line: '跨院复诊不再重复抽血，出院直接收到医保到账短信。' },
+          { role: '医保专员', tone: 'official', line: '健康大脑建立个人档案，智能识别高额支出家庭提前介入救助。' },
+          { role: '基层医生', tone: 'cadre', line: '我们通过系统跟踪用药提醒、复诊预约，病患依从性高了。' }
+        ],
+        oldFlow: ['跨院就诊需重新做检查检验', '报销材料纸质递交，排队等待审批', '困难家庭往往事后补救，救助不及时'],
+        newFlow: ['二级以上医院检查互认，影像云共享', '出院即触发医保结算，线上即时报销', '跨部门数据建模提前发现因病致贫风险并自动启动救助'],
+        resilience: 'H',
+        green: 'M'
+      },
+      'gan-zou': {
+        name: '敢走',
+        tagline: '身后事一网告别',
+        domain: '民生服务',
+        summary: '以尊严服务告别，将逝者身后事项打包联办，家属只需一次授权。',
+        valueStory: '减负 45 · 普惠 25 · 协同 20 · 创新 5 · 增信 5。',
+        metrics: ['核心事项一次办结率 ≥90%', '线下跑动次数 ≤1 次', '资金事项 3 个工作日内办结率 ≥95%'],
+        dialogues: [
+          { role: '逝者家属', tone: 'citizen', line: '在殡仪馆一次告知，户籍注销、抚恤金、社保停发都自动完成。' },
+          { role: '民政窗口', tone: 'official', line: '电子死亡证明触发联办链路，后台同步处理资金结算。' },
+          { role: '公证处', tone: 'cadre', line: '系统生成遗产指引和预约，避免家属二次奔波。' }
+        ],
+        oldFlow: ['家属携带纸质证明多头奔波', '社保、公积金停发流程复杂且易遗漏', '遗产、公证材料清单不透明'],
+        newFlow: ['死亡证明线上生成即触发一窗联办', '相关部门后台联动，关键证明一次领取', '复杂事项生成专属材料包与线上预约'],
+        resilience: 'M',
+        green: 'L'
+      },
+      'gan-xue': {
+        name: '敢学',
+        tagline: '入学转学助学一表通',
+        domain: '民生服务',
+        summary: '覆盖义务教育到资助申请的完整链条，保障每个孩子“应助尽助”。',
+        valueStory: '减负 35 · 普惠 30 · 协同 20 · 创新 10 · 增信 5。',
+        metrics: ['义务教育入学 100% 网上办', '转学办理时限缩短 ≥50%', '困难学生资助材料减少 ≥70%'],
+        dialogues: [
+          { role: '外来务工家长', tone: 'citizen', line: '手机上提交“一表申请”，孩子就近分配学校信息秒回。' },
+          { role: '教育局审批员', tone: 'official', line: '学籍跨区转接全程在线，流程可视无缝衔接。' },
+          { role: '学校资助老师', tone: 'cadre', line: '贫困生系统自动匹配助学政策，我们负责回访确认。' }
+        ],
+        oldFlow: ['入学证明材料多、现场排队', '学籍转接需要家长多地跑', '资助申请流程复杂，信息不对称'],
+        newFlow: ['入学线上一表申请，数据自动比对公示', '转学审批在线流转并自动归档', '资助政策自动匹配并推送到学生家庭'],
+        resilience: 'M',
+        green: 'L'
+      },
+      'gan-yang': {
+        name: '敢养',
+        tagline: '养老照护一网兜底',
+        domain: '民生服务',
+        summary: '数据主动识别高龄、失能、困难老人，打通医疗与养老的全链条。',
+        valueStory: '普惠 35 · 协同 15 · 创新 20 · 减负 25 · 增信 5。',
+        metrics: ['高龄津贴“应发尽发率” 100%', '护理保险参保覆盖率持续提升', '养老床位等待时间缩短 ≥30%'],
+        dialogues: [
+          { role: '失能老人家属', tone: 'citizen', line: '我们收到系统提醒，上门就办好了长期护理保险。' },
+          { role: '养老院院长', tone: 'official', line: '床位信息实时共享，医疗随访也自动安排。' },
+          { role: '社区干部', tone: 'cadre', line: '数据主动推送名单，我们只需上门核对即可发放补贴。' }
+        ],
+        oldFlow: ['补贴信息靠主动咨询', '养老、医疗系统割裂', '护理保险办理繁琐、报销慢'],
+        newFlow: ['老人数据统一登记，政策主动推送', '医疗机构与养老院信息互通共享', '护理保险线上办理、异地结算'],
+        resilience: 'H',
+        green: 'M'
+      },
+      'gan-zhu': {
+        name: '敢住',
+        tagline: '安居保障一口受理',
+        domain: '民生服务',
+        summary: '保障房、公租房、租赁补贴一口受理、并行审核，过程透明。',
+        valueStory: '减负 30 · 普惠 30 · 协同 20 · 创新 10 · 增信 10。',
+        metrics: ['保障对象应保尽保率 100%', '公租房轮候周期缩短 20%-30%', '补贴按月准时拨付率 100%'],
+        dialogues: [
+          { role: '新就业青年', tone: 'citizen', line: '一个入口填资料，就能看到可选房源和排队进度。' },
+          { role: '住建审核员', tone: 'official', line: '资格核验后台并行，系统自动比对不动产、民政数据。' },
+          { role: '街道社工', tone: 'cadre', line: '我们用移动端确认入住，全程透明公示。' }
+        ],
+        oldFlow: ['资格审核材料多、流转慢', '轮候信息不透明', '补贴与公租房流程割裂'],
+        newFlow: ['线上一次申报并自动匹配保障类型', '多部门并行核验并实时公示进度', '补贴按月直达账户与公租房联动'],
+        resilience: 'M',
+        green: 'M'
+      },
+      'gan-qian': {
+        name: '敢迁',
+        tagline: '跨城通迁一次办',
+        domain: '民生服务',
+        summary: '户籍、社保、医保、公积金、子女转学打包迁移，两地协同无断档。',
+        valueStory: '协同 30 · 减负 25 · 创新 15 · 普惠 15 · 增信 15。',
+        metrics: ['跨市州迁移联办率 100%', '群众平均跑动次数 ≤1 次', '社保、公积金、医保转接零时滞'],
+        dialogues: [
+          { role: '调动干部', tone: 'citizen', line: '在川慧办申请，所有社保公积金自动无缝转入新单位。' },
+          { role: '公安民警', tone: 'official', line: '户籍迁出、迁入同步，纸质档案自动寄送。' },
+          { role: '教育局工作人员', tone: 'cadre', line: '孩子随迁转学系统预警，我们提前安排学位。' }
+        ],
+        oldFlow: ['群众往返迁出地与迁入地多次跑腿', '社保、公积金、医保衔接易断档', '子女转学缺乏提醒'],
+        newFlow: ['“跨城通迁”线上申请，公安与人社并联', '社保、医保、公积金自动转接并实时反馈', '适龄儿童同步推送转学方案'],
+        resilience: 'M',
+        green: 'L'
+      },
+      'gan-tou': {
+        name: '敢投',
+        tagline: '项目“拿地即开工”',
+        domain: '营商环境',
+        summary: '多规合一地图 + 并联审批 + 区域统一评价，让企业拿地后即可动工。',
+        valueStory: '协同 30 · 增信 25 · 减负 20 · 创新 15 · 普惠 10。',
+        metrics: ['审批时间压缩 ≥50%', '拿地即开工率显著提升', '新增项目落地数持续增长'],
+        dialogues: [
+          { role: '制造业企业家', tone: 'citizen', line: '电子地图一查就知道地块指标，拿地后半月就能动工。' },
+          { role: '发改审批员', tone: 'official', line: '多部门并联审批，我们按“一企一策清单”倒排工期。' },
+          { role: '园区管委会', tone: 'cadre', line: '园区先行开展统一环评，企业落地不再重复评估。' }
+        ],
+        oldFlow: ['多部门串联审批、耗时长', '企业反复补材料、排队等待', '园区重复评估，时间成本高'],
+        newFlow: ['多规合一智慧地图一次看清准入条件', '审批流程并联推进，系统倒计时管理', '园区实施统一评价，企业免重复评审'],
+        resilience: 'M',
+        green: 'M'
+      },
+      'gan-dai': {
+        name: '敢贷',
+        tagline: '信用贷款一键申',
+        domain: '营商环境',
+        summary: '数据画像信用分 + 银企对接平台 + 风险补偿基金，让中小微企业“敢贷敢用”。',
+        valueStory: '增信 40 · 协同 20 · 创新 20 · 减负 10 · 普惠 10。',
+        metrics: ['信用贷款获贷率由 30% 提升至 60%+', '融资成本下降 2-3 个百分点', '放款周期压缩 ≥70%'],
+        dialogues: [
+          { role: '科技创业者', tone: 'citizen', line: '一次填报融资需求，三家银行主动来对接。' },
+          { role: '银行客户经理', tone: 'official', line: '看到企业实时经营数据和信用分，贷得更踏实。' },
+          { role: '财政风控官', tone: 'cadre', line: '风险补偿基金托底，创新贷款敢放、敢管。' }
+        ],
+        oldFlow: ['企业缺抵押，融资难度大', '申贷材料多、审批慢', '银行风险担忧放款谨慎'],
+        newFlow: ['整合税社电水数据生成信用画像', '银企平台一键申贷自动撮合', '风险补偿基金+先贷后审机制加速放款'],
+        resilience: 'M',
+        green: 'L'
+      },
+      'gan-kuo': {
+        name: '敢扩',
+        tagline: '增产扩能绿色直通',
+        domain: '营商环境',
+        summary: '扩张服务专席全程帮办，跨地区手续一网通，绿色项目优先保障。',
+        valueStory: '协同 25 · 增信 20 · 创新 20 · 减负 20 · 普惠 15。',
+        metrics: ['扩产审批用时降低 ≥40%', '跨地设点基本免跑腿', '重点企业满意度持续提升'],
+        dialogues: [
+          { role: '制造业负责人', tone: 'citizen', line: '专席帮办把环评、能源指标提前调配好，我们专心生产。' },
+          { role: '市场监管', tone: 'official', line: '承诺即入+事后监管，既提速又守住底线。' },
+          { role: '生态环境局', tone: 'cadre', line: '绿色直通车确保扩能项目达标，审批跑得快。' }
+        ],
+        oldFlow: ['跨地区审批手续多、口径不一', '扩能项目环节重叠、耗时长', '绿色指标缺少保障'],
+        newFlow: ['扩张专席提供选址到用工一揽子服务', '营业执照跨地通办，承诺即入', '绿色项目开通直通车优先审批'],
+        resilience: 'M',
+        green: 'H'
+      },
+      'gan-nong': {
+        name: '敢农',
+        tagline: '补贴农险上行闭环',
+        domain: '营商环境',
+        summary: '补贴直达、农险快赔、数字田间市场，让农业经营者敢投敢种。',
+        valueStory: '普惠 30 · 协同 20 · 增信 15 · 创新 15 · 减负 20。',
+        metrics: ['补贴直达率 100%', '小额农险 3 个工作日结案率 ≥90%', '农产品电商销售额持续增长'],
+        dialogues: [
+          { role: '家庭农场主', tone: 'citizen', line: '手机上申报一次，补贴直接到账，还能看到合作社订单。' },
+          { role: '保险查勘员', tone: 'official', line: '遥感+无人机图像识别，灾后理赔不再走人工慢车道。' },
+          { role: '供销社经理', tone: 'cadre', line: '数字田间市场让渠道、品牌、物流全打通。' }
+        ],
+        oldFlow: ['补贴政策分散、申报麻烦', '农险查勘慢、理赔拖', '农产品上行缺渠道'],
+        newFlow: ['补贴直达系统自动匹配对象', '智慧农险快速定损、线上赔付', '数字田间市场联结认证与销售'],
+        resilience: 'H',
+        green: 'H'
+      },
+      'gan-guan': {
+        name: '敢管',
+        tagline: '市场监管智能闭环',
+        domain: '社会治理',
+        summary: '跨部门数据融合，风险分级预警，“双随机+数据”精准执法。',
+        valueStory: '协同 35 · 创新 20 · 增信 15 · 普惠 15 · 减负 15。',
+        metrics: ['重点行业隐患发现率明显提升', '联合执法响应时间缩短 ≥50%', '重大事故零发生'],
+        dialogues: [
+          { role: '餐饮经营者', tone: 'citizen', line: '我们更少被重复检查，但一旦风险预警立刻收到整改建议。' },
+          { role: '市场监管员', tone: 'official', line: '数据画像告诉我们该检查谁，执法力量用在刀刃上。' },
+          { role: '应急局调度', tone: 'cadre', line: '风险预警自动生成联动任务单，部门协同快了。' }
+        ],
+        oldFlow: ['监管信息分散，靠人工巡查', '执法资源重复甚至盲目', '部门协同慢，处置不闭环'],
+        newFlow: ['跨部门数据融合构建风险画像', '双随机 + 数据预警精准安排检查', '风险事件生成联动任务单全程留痕'],
+        resilience: 'H',
+        green: 'M'
+      },
+      'gan-jiu': {
+        name: '敢救',
+        tagline: '自然灾害一键避险',
+        domain: '社会治理',
+        summary: '智能应急大脑监测山洪地灾，预警秒级触达，实现“零遗漏”转移。',
+        valueStory: '协同 30 · 创新 25 · 普惠 25 · 减负 10 · 增信 10。',
+        metrics: ['预警时效达标率 ≥90%', '预警覆盖率 100%', '应转移人员零遗漏安全撤离'],
+        dialogues: [
+          { role: '山村村民', tone: 'citizen', line: '半夜手机、广播同时响，我们按预案撤离到安全点。' },
+          { role: '气象监测员', tone: 'official', line: '传感器实时上传雨量位移，AI 自动判读危险级别。' },
+          { role: '村支书', tone: 'cadre', line: '我们有“一键避险”演练方案，收到红灯就立即集合群众。' }
+        ],
+        oldFlow: ['监测手段落后、预警滞后', '信息传递断点多，群众不了解风险', '基层缺乏演练预案'],
+        newFlow: ['部署物联网监测与智能分析', '多渠道秒级触达预警信息', '村级响应网络配合演练确保执行'],
+        resilience: 'H',
+        green: 'M'
+      },
+      'gan-ping': {
+        name: '敢评',
+        tagline: '群众诉求闭环处置',
+        domain: '社会治理',
+        summary: '12345、信访、投诉等渠道合一，办理进度透明，满意度纳入闭环考核。',
+        valueStory: '减负 25 · 协同 25 · 增信 20 · 普惠 20 · 创新 10。',
+        metrics: ['诉求办结率 ≥98%', '平均办理时长缩短 ≥30%', '群众满意率 ≥90%'],
+        dialogues: [
+          { role: '市民代表', tone: 'citizen', line: '我能在平台实时看到诉求进度，办结后还能线上评分。' },
+          { role: '热线坐席', tone: 'official', line: '智能分拨精准推送责任部门，超时系统自动督办。' },
+          { role: '纪检监督员', tone: 'cadre', line: '满意度低的事项会触发复核，形成问题清单。' }
+        ],
+        oldFlow: ['诉求渠道多头分散', '办事流程不透明、推诿严重', '缺乏有效的满意度闭环'],
+        newFlow: ['统一入口整合所有渠道', '办理节点全程可视化并超时预警', '满意度评价纳入考核并启动复核机制'],
+        resilience: 'M',
+        green: 'L'
+      },
+      'gan-xing': {
+        name: '敢行',
+        tagline: '成渝双城通勤互联',
+        domain: '社会治理',
+        summary: '账户互认、交通一码通、执业资质互认，加速要素自由流动。',
+        valueStory: '协同 35 · 增信 20 · 创新 15 · 减负 15 · 普惠 15。',
+        metrics: ['跨省通办覆盖全部高频事项', '2025 年公共交通一码通', '执业资格/信用资质互认 50 项以上'],
+        dialogues: [
+          { role: '双城通勤族', tone: 'citizen', line: '坐高铁上下班，成都的地铁码在重庆也能刷。' },
+          { role: '营商专员', tone: 'official', line: '企业资质互认，跨城办事不再来回跑。' },
+          { role: '人才服务中心', tone: 'cadre', line: '专业资格、信用信息互通，人才落地没有阻力。' }
+        ],
+        oldFlow: ['成渝通勤支付不互认', '企业跨城办事需重复提交材料', '执业资质互认不足'],
+        newFlow: ['市民服务平台账号互认、数据互通', '一体化专区提供联办套餐', '建立“川渝信用通”实现资格互认'],
+        resilience: 'M',
+        green: 'M'
+      },
+      'gan-jue': {
+        name: '敢决',
+        tagline: '数据驱动敏捷决策',
+        domain: '政府效能',
+        summary: '价值仪表盘实时监测核心指标，黄灯/红灯直达决策层，政策快速迭代。',
+        valueStory: '创新 25 · 协同 25 · 增信 20 · 减负 15 · 普惠 15。',
+        metrics: ['主要指标预警准确率显著提升', '重大政策调整周期缩短至半年内', '决策响应速度显著增强'],
+        dialogues: [
+          { role: '省政府参事', tone: 'citizen', line: '仪表盘提醒某项指标连续下降，我们第一时间动议调整政策。' },
+          { role: '数据分析师', tone: 'official', line: '系统自动推送可能原因和备选方案，领导拍板更快。' },
+          { role: '业务处室', tone: 'cadre', line: '小步快跑试点后再放大，避免“一刀切”错误。' }
+        ],
+        oldFlow: ['政策效果年终总结才发现', '数据分散难以支撑决策', '调整周期长、响应慢'],
+        newFlow: ['价值仪表盘实时监测并预警', '模型给出原因诊断与备选政策', '建立快速试点、快速调整机制'],
+        resilience: 'H',
+        green: 'L'
+      },
+      'gan-diao': {
+        name: '敢调',
+        tagline: '资金资源一盘棋',
+        domain: '政府效能',
+        summary: '数字化资源总账 + 揭榜挂帅 + 绩效退出，破解重复建设与资源浪费。',
+        valueStory: '协同 30 · 减负 20 · 增信 20 · 创新 15 · 普惠 15。',
+        metrics: ['重复建设率趋近 0', '存量整合节省大量运维支出', '低效项目 100% 纳入退出机制'],
+        dialogues: [
+          { role: '财政预算官', tone: 'official', line: '所有数字资产先入总账，没有论证不得重复立项。' },
+          { role: '市州代表', tone: 'citizen', line: '揭榜挂帅激励领先试点，我们愿意争先创优。' },
+          { role: '纪检监督员', tone: 'cadre', line: '绩效差就退出，让资源流向真正有价值的任务。' }
+        ],
+        oldFlow: ['部门自建项目重复投入', '资源闲置无法盘活', '缺乏有效的绩效退出机制'],
+        newFlow: ['建立全省数字化资源总账', '改按主题投资+揭榜挂帅', '常态化绩效评估与退出机制'],
+        resilience: 'M',
+        green: 'M'
+      },
+      'gan-tong': {
+        name: '敢统',
+        tagline: '干部数字素养与协同考核',
+        domain: '政府效能',
+        summary: '数字领航培训 + 协同一票否决 + 容错纠错，激发干部敢闯敢试。',
+        valueStory: '协同 35 · 创新 20 · 减负 15 · 增信 15 · 普惠 15。',
+        metrics: ['干部数字技能掌握度接近 100%', '跨部门联办率/应急联动率 ≥90%', '形成“我要转”改革氛围'],
+        dialogues: [
+          { role: '基层干部', tone: 'citizen', line: '培训不再是 PPT，而是和群众共创的“吐槽大会”。' },
+          { role: '组织部干部', tone: 'official', line: '协同指标纳入一把手考核，不达标要问责。' },
+          { role: '改革试点组长', tone: 'cadre', line: '容错机制让我们敢试新做法，失败了也能快速纠错。' }
+        ],
+        oldFlow: ['干部数字能力不足', '跨部门协同缺乏激励', '试错成本高、怕担责'],
+        newFlow: ['分层数字培训+市民体验官共创', '协同指标一票否决与奖惩并行', '容错纠错为创新兜底'],
+        resilience: 'M',
+        green: 'L'
+      }
+    };
+
+    const valueProfiles = {
+      overall: { label: '全局', data: { jianfu: 28, zengxin: 23, xietong: 27, chuangxin: 18, puhui: 22 }, baseline: '全局要求：韧性守好风险底线，绿色统筹推进“双碳”目标。' },
+      '民生服务': { label: '民生服务', data: { jianfu: 33, zengxin: 10, xietong: 21, chuangxin: 14, puhui: 30 }, baseline: domainConfigs[0].baseline },
+      '营商环境': { label: '营商环境', data: { jianfu: 18, zengxin: 24, xietong: 24, chuangxin: 18, puhui: 16 }, baseline: domainConfigs[1].baseline },
+      '社会治理': { label: '社会治理', data: { jianfu: 16, zengxin: 16, xietong: 33, chuangxin: 22, puhui: 23 }, baseline: domainConfigs[2].baseline },
+      '政府效能': { label: '政府效能', data: { jianfu: 17, zengxin: 18, xietong: 30, chuangxin: 20, puhui: 15 }, baseline: domainConfigs[3].baseline }
+    };
+
+    const nodeContainers = document.querySelectorAll('.domain-column');
+    nodeContainers.forEach(column => {
+      const domainId = column.dataset.domain;
+      const config = domainConfigs.find(item => item.id === domainId);
+      const nodesBox = column.querySelector('.nodes');
+      config.tasks.forEach(taskId => {
+        const detail = taskDetails[taskId];
+        const button = document.createElement('button');
+        button.className = 'node';
+        button.dataset.task = taskId;
+        button.innerHTML = `<strong>${detail.name}</strong>${detail.tagline}`;
+        nodesBox.appendChild(button);
+      });
+    });
+
+    const storyPanel = document.getElementById('story-panel');
+    const metricsList = storyPanel.querySelector('.metrics-list');
+    const dialogueCluster = document.getElementById('dialogue-cluster');
+    const oldFlowBox = document.getElementById('old-flow');
+    const newFlowBox = document.getElementById('new-flow');
+    const baselineCallout = document.getElementById('baseline-callout');
+
+    function renderStory(taskId) {
+      const detail = taskDetails[taskId];
+      if (!detail) return;
+      const domainConfig = domainConfigs.find(item => item.id === detail.domain);
+      document.querySelectorAll('.node').forEach(btn => btn.classList.toggle('active', btn.dataset.task === taskId));
+      storyPanel.innerHTML = `
+        <div class="domain-tag">${detail.domain} · VALUE SPOT</div>
+        <h3>${detail.name}｜${detail.tagline}</h3>
+        <p>${detail.summary}</p>
+        <p>${detail.valueStory}</p>
+        <ul class="metrics-list">${detail.metrics.map(item => `<li>${item}</li>`).join('')}</ul>
+      `;
+
+      dialogueCluster.innerHTML = detail.dialogues.map(bubble => `
+        <div class="bubble ${bubble.tone}">
+          <span>${bubble.role}</span>${bubble.line}
+        </div>`).join('');
+
+      oldFlowBox.innerHTML = detail.oldFlow.map(item => `<li>${item}</li>`).join('');
+      newFlowBox.innerHTML = detail.newFlow.map(item => `<li>${item}</li>`).join('');
+
+      drawRadar(detail.domain);
+      baselineCallout.textContent = valueProfiles[detail.domain]?.baseline || domainConfig?.baseline || '';
+    }
+
+    document.querySelectorAll('.node').forEach(button => {
+      button.addEventListener('click', () => {
+        renderStory(button.dataset.task);
+      });
+    });
+
+    const switcher = document.getElementById('domain-switcher');
+    Object.keys(valueProfiles).forEach(key => {
+      const btn = document.createElement('button');
+      btn.textContent = valueProfiles[key].label;
+      btn.dataset.domain = key;
+      if (key === 'overall') btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#domain-switcher button').forEach(b => b.classList.toggle('active', b === btn));
+        drawRadar(key === 'overall' ? 'overall' : key);
+        baselineCallout.textContent = valueProfiles[key].baseline;
+      });
+      switcher.appendChild(btn);
+    });
+
+    const canvas = document.getElementById('value-radar');
+    const ctx = canvas.getContext('2d');
+    const axes = ['jianfu', 'zengxin', 'xietong', 'chuangxin', 'puhui'];
+    const axisLabel = { jianfu: '减负', zengxin: '增信', xietong: '协同', chuangxin: '创新', puhui: '普惠' };
+
+    function drawRadar(domainKey) {
+      const profile = valueProfiles[domainKey] || valueProfiles.overall;
+      const values = profile.data;
+      const w = canvas.width;
+      const h = canvas.height;
+      const centerX = w / 2;
+      const centerY = h / 2;
+      const maxRadius = Math.min(w, h) / 2 - 40;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.font = '12px "Noto Sans SC"';
+      ctx.strokeStyle = 'rgba(149, 161, 201, 0.32)';
+      ctx.lineWidth = 1;
+
+      for (let level = 1; level <= 4; level++) {
+        const radius = (maxRadius / 4) * level;
+        ctx.beginPath();
+        axes.forEach((axis, idx) => {
+          const angle = (Math.PI * 2 / axes.length) * idx - Math.PI / 2;
+          const x = centerX + Math.cos(angle) * radius;
+          const y = centerY + Math.sin(angle) * radius;
+          if (idx === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = 'rgba(149, 161, 201, 0.45)';
+      axes.forEach((axis, idx) => {
+        const angle = (Math.PI * 2 / axes.length) * idx - Math.PI / 2;
+        const x = centerX + Math.cos(angle) * maxRadius;
+        const y = centerY + Math.sin(angle) * maxRadius;
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        const labelX = centerX + Math.cos(angle) * (maxRadius + 16);
+        const labelY = centerY + Math.sin(angle) * (maxRadius + 16);
+        ctx.fillStyle = 'rgba(149, 161, 201, 0.8)';
+        ctx.fillText(axisLabel[axis], labelX - 10, labelY);
+      });
+
+      const gradient = ctx.createLinearGradient(0, 0, w, h);
+      gradient.addColorStop(0, 'rgba(79, 141, 255, 0.55)');
+      gradient.addColorStop(1, 'rgba(99, 230, 190, 0.45)');
+      ctx.beginPath();
+      axes.forEach((axis, idx) => {
+        const angle = (Math.PI * 2 / axes.length) * idx - Math.PI / 2;
+        const v = values[axis] || 0;
+        const radius = (v / 45) * maxRadius; // assume 0-40 baseline
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+        if (idx === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      ctx.fillStyle = gradient;
+      ctx.strokeStyle = 'rgba(99, 230, 190, 0.9)';
+      ctx.fill();
+      ctx.stroke();
+    }
+
+    drawRadar('overall');
+
+    function initDefault() {
+      const defaultTask = 'gan-sheng';
+      renderStory(defaultTask);
+      document.querySelector(`.node[data-task="${defaultTask}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.querySelectorAll('#domain-switcher button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.domain === '民生服务');
+      });
+    }
+
+    initDefault();
+  </script>
+</body>
+</html>
