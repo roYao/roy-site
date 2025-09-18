@@ -287,9 +287,60 @@
       cursor: pointer;
       font-size: 0.95rem;
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      display: grid;
+      gap: 0.6rem;
     }
 
-    .node strong { display: block; font-size: 1.05rem; margin-bottom: 0.25rem; }
+    .node strong { display: block; font-size: 1.05rem; margin: 0; }
+
+    .node-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .node-baseline {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .node p {
+      margin: 0;
+      color: var(--soft-ink);
+      font-size: 0.9rem;
+    }
+
+    .node-weight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    .value-chip {
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(79, 141, 255, 0.18);
+      color: var(--soft-ink);
+      border: 1px solid rgba(79, 141, 255, 0.22);
+    }
+
+    .value-chip--primary {
+      background: rgba(99, 230, 190, 0.22);
+      color: var(--ink);
+      border-color: rgba(99, 230, 190, 0.45);
+    }
+
+    .value-chip[data-dim="jianfu"] { border-color: rgba(79, 141, 255, 0.32); }
+    .value-chip[data-dim="zengxin"] { border-color: rgba(99, 230, 190, 0.45); }
+    .value-chip[data-dim="xietong"] { border-color: rgba(140, 84, 255, 0.45); }
+    .value-chip[data-dim="chuangxin"] { border-color: rgba(255, 209, 102, 0.45); }
+    .value-chip[data-dim="puhui"] { border-color: rgba(255, 107, 107, 0.45); }
 
     .node:hover {
       transform: translateY(-3px);
@@ -319,6 +370,13 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--muted);
+    }
+
+    .panel-baseline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.8rem;
     }
 
     .story-panel p { margin: 0.6rem 0; color: var(--soft-ink); }
@@ -715,11 +773,208 @@
       border-color: rgba(79, 141, 255, 0.38);
     }
 
+    .value-cards button:focus-visible,
+    .node:focus-visible,
+    .switcher button:focus-visible,
+    .task-chip:focus-visible,
+    .matrix-task-row:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.28);
+    }
+
     .value-detail-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
       gap: 1.8rem;
       align-items: start;
+    }
+
+    .value-matrix-wrapper {
+      margin-top: 2.4rem;
+      background: rgba(10, 16, 28, 0.92);
+      border-radius: 24px;
+      border: 1px solid rgba(79, 141, 255, 0.24);
+      padding: 1.8rem;
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .value-matrix-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.6rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .value-matrix-header h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .value-matrix-note {
+      margin: 0;
+      color: var(--soft-ink);
+      font-size: 0.93rem;
+      max-width: 52ch;
+    }
+
+    .value-matrix {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 18px;
+      border: 1px solid rgba(79, 141, 255, 0.24);
+      background: rgba(12, 18, 30, 0.9);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .value-matrix table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      font-size: 0.92rem;
+    }
+
+    .value-matrix thead {
+      background: rgba(79, 141, 255, 0.16);
+    }
+
+    .value-matrix th,
+    .value-matrix td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(79, 141, 255, 0.14);
+      text-align: left;
+      white-space: nowrap;
+      color: var(--soft-ink);
+    }
+
+    .value-matrix td.baseline-cell {
+      text-align: center;
+    }
+
+    .matrix-task-row {
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .matrix-task-row:hover,
+    .matrix-task-row:focus-visible {
+      background: rgba(79, 141, 255, 0.12);
+    }
+
+    .matrix-task-row.active {
+      background: rgba(99, 230, 190, 0.16);
+    }
+
+    .value-matrix th {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .matrix-domain th {
+      padding-top: 1.2rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(79, 141, 255, 0.08);
+    }
+
+    .matrix-domain th span {
+      color: var(--soft-ink);
+      letter-spacing: 0.06em;
+      text-transform: none;
+      font-size: 0.88rem;
+      margin-left: 0.6rem;
+    }
+
+    .matrix-task {
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .matrix-task strong {
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .matrix-task small {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .matrix-bar {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: 100%;
+      min-width: 70px;
+      padding: 0.25rem 0.35rem;
+      border-radius: 10px;
+      background: rgba(79, 141, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .matrix-bar::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(79, 141, 255, 0.45), rgba(99, 230, 190, 0.45));
+      transform: scaleX(var(--fill, 0));
+      transform-origin: left;
+      transition: transform 0.3s ease;
+      opacity: 0.85;
+    }
+
+    .matrix-bar span {
+      position: relative;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
+    .baseline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(79, 141, 255, 0.28);
+      background: rgba(79, 141, 255, 0.12);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .baseline-pill[data-level="H"] {
+      border-color: rgba(255, 209, 102, 0.5);
+      background: rgba(255, 209, 102, 0.15);
+      color: #ffd166;
+    }
+
+    .baseline-pill[data-level="M"] {
+      border-color: rgba(99, 230, 190, 0.45);
+      background: rgba(99, 230, 190, 0.12);
+      color: #63e6be;
+    }
+
+    .baseline-pill[data-level="L"] {
+      border-color: rgba(79, 141, 255, 0.32);
+      background: rgba(79, 141, 255, 0.12);
+      color: var(--muted);
+    }
+
+    .baseline-pill--compact {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      letter-spacing: 0.08em;
     }
 
     .radar-panel {
@@ -860,105 +1115,152 @@
       color: var(--soft-ink);
     }
 
-    .matrix-header {
+    .domain-overview-head {
       display: grid;
       gap: 0.6rem;
-      margin-bottom: 1.2rem;
+      margin: 2.2rem 0 1.2rem;
     }
 
-    .dimension-insight {
-      display: grid;
-      gap: 1.2rem;
-      margin-bottom: 1.6rem;
-    }
-
-    .insight-tasks {
-      display: grid;
-      gap: 0.8rem;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-
-    .task-chip {
-      padding: 1rem 1.1rem;
-      border-radius: 16px;
-      border: 1px solid rgba(99, 230, 190, 0.22);
-      background: rgba(12, 19, 30, 0.9);
-      box-shadow: 0 12px 24px rgba(12, 24, 48, 0.24);
-      color: var(--soft-ink);
-      cursor: pointer;
-      text-align: left;
-      width: 100%;
-    }
-
-    .task-chip h4 {
-      margin: 0 0 0.4rem;
-      font-size: 0.98rem;
-      color: var(--ink);
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-
-    .task-chip span {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .task-chip p {
+    .domain-overview-head h3 {
       margin: 0;
-      font-size: 0.9rem;
-      color: var(--soft-ink);
+      font-size: 1.25rem;
+      color: var(--ink);
     }
 
-    .insight-metrics {
-      background: rgba(14, 20, 32, 0.88);
-      border-radius: 18px;
-      border: 1px solid rgba(79, 141, 255, 0.2);
-      padding: 1.2rem 1.4rem;
-      color: var(--soft-ink);
-    }
-
-    .insight-metrics h4 {
-      margin: 0 0 0.6rem;
+    .domain-overview-head p {
+      margin: 0;
+      color: var(--muted);
       font-size: 0.95rem;
-      letter-spacing: 0.08em;
+    }
+
+    .domain-overview {
+      display: grid;
+      gap: 1.4rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .domain-card {
+      background: rgba(14, 20, 34, 0.88);
+      border-radius: 20px;
+      border: 1px solid rgba(79, 141, 255, 0.22);
+      padding: 1.6rem;
+      color: var(--soft-ink);
+      display: grid;
+      gap: 0.9rem;
+      box-shadow: 0 18px 32px rgba(12, 24, 48, 0.24);
+    }
+
+    .domain-card header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .domain-subtitle {
+      margin: 0 0 0.4rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    .insight-metrics ul {
+    .domain-card h4 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+
+    .domain-card small {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .value-pill-set {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .value-pill {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(79, 141, 255, 0.18);
+      color: var(--ink);
+      font-size: 0.82rem;
+    }
+
+    .domain-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .domain-meta span {
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(99, 230, 190, 0.28);
+      background: rgba(12, 18, 30, 0.9);
+      color: var(--soft-ink);
+    }
+
+    .domain-card ul {
       margin: 0;
       padding-left: 1.1rem;
       display: grid;
       gap: 0.45rem;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
+      color: var(--soft-ink);
     }
 
-    .matrix-switcher {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-bottom: 1rem;
-    }
-
-    .matrix-switcher button {
-      border: 1px solid rgba(79, 141, 255, 0.26);
-      background: rgba(12, 18, 30, 0.85);
+    .domain-card p {
+      margin: 0;
+      font-size: 0.9rem;
       color: var(--muted);
-      padding: 0.45rem 1.1rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s ease;
     }
 
-    .matrix-switcher button.active {
-      background: linear-gradient(135deg, rgba(79, 141, 255, 0.36), rgba(99, 230, 190, 0.28));
-      border-color: rgba(99, 230, 190, 0.45);
+    .task-chip {
+      display: block;
+      text-align: left;
+      border: 1px solid rgba(79, 141, 255, 0.24);
+      background: rgba(12, 18, 30, 0.92);
+      border-radius: 16px;
+      padding: 0.9rem 1rem;
+      color: var(--soft-ink);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .task-chip h4 {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
       color: var(--ink);
-      box-shadow: 0 14px 26px rgba(71, 132, 255, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .task-chip h4 span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .task-chip p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--soft-ink);
+    }
+
+    .task-chip:hover {
+      transform: translateY(-3px);
+      border-color: rgba(99, 230, 190, 0.4);
+      box-shadow: 0 14px 32px rgba(79, 141, 255, 0.2);
     }
 
     .insight-metrics p {
@@ -973,6 +1275,7 @@
       .value-core { grid-column: 1 / -1; }
       .value-detail-layout { grid-template-columns: 1fr; }
       .radar-panel, .dimension-panel { padding: 1.5rem; }
+      .value-matrix-wrapper { padding: 1.5rem; }
     }
 
     @media (max-width: 720px) {
@@ -992,6 +1295,9 @@
       .value-cards button { min-width: 160px; }
       .radar-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
       .constraint-grid { grid-template-columns: 1fr; }
+      .value-matrix-wrapper { padding: 1.2rem; }
+      .value-matrix th,
+      .value-matrix td { padding: 0.7rem 0.75rem; }
     }
   </style>
 </head>
@@ -1133,6 +1439,15 @@
         </div>
         <article class="dimension-panel" id="dimension-panel"></article>
       </div>
+      <div class="value-matrix-wrapper">
+        <div class="value-matrix-header">
+          <h3>任务 × 价值矩阵</h3>
+          <p class="value-matrix-note">横向看五维价值权重（条形长度越长越靠近 40% 峰值），纵向锁定 18 个“敢系列”任务，右侧同时标明韧性、绿色等级，帮助领导一眼识别资源投放重点与底线约束（移动端可左右滑动矩阵）。</p>
+        </div>
+        <div class="value-matrix" id="value-matrix" role="region" aria-live="polite" aria-label="任务价值矩阵">
+          <!-- 动态渲染矩阵 -->
+        </div>
+      </div>
       <div class="constraint-grid">
         <article>
           <h3>韧性底线 · 先保证“关键时刻不断档”</h3>
@@ -1151,26 +1466,11 @@
           </ul>
         </article>
       </div>
-      <div class="value-matrix">
-        <div class="matrix-header">
-          <h3>价值映射 · 看清优先发力点</h3>
-          <p>选择价值维度，查看最需攻坚的任务与关键KPI。下方表格保留按领域汇总的平均权重，便于宏观统筹。</p>
-        </div>
-        <div class="matrix-switcher" id="dimension-switcher"></div>
-        <div class="dimension-insight" id="dimension-insight"></div>
-        <table class="matrix-table">
-          <thead>
-            <tr>
-              <th>领域</th>
-              <th>主攻价值</th>
-              <th>韧性</th>
-              <th>绿色</th>
-              <th>代表任务</th>
-            </tr>
-          </thead>
-          <tbody id="matrix-body"></tbody>
-        </table>
+      <div class="domain-overview-head">
+        <h3>领域全景 · 哪些战车最需要加速</h3>
+        <p>逐张卡片显示每个领域的平均价值权重、韧性/绿色等级和代表任务，方便领导快速判断资源投向。</p>
       </div>
+      <div class="domain-overview" id="domain-overview"></div>
     </section>
 
     <section id="engine">
@@ -1719,9 +2019,8 @@
 
     const valueCardsContainer = document.getElementById('value-cards');
     const dimensionPanel = document.getElementById('dimension-panel');
-    const dimensionSwitcher = document.getElementById('dimension-switcher');
-    const dimensionInsight = document.getElementById('dimension-insight');
-    const matrixBody = document.getElementById('matrix-body');
+    const domainOverview = document.getElementById('domain-overview');
+    const valueMatrixContainer = document.getElementById('value-matrix');
 
     const axisKeys = ['jianfu', 'zengxin', 'xietong', 'chuangxin', 'puhui'];
     const axisLabel = { jianfu: '减负', zengxin: '增信', xietong: '协同', chuangxin: '创新', puhui: '普惠' };
@@ -1736,7 +2035,31 @@
         const button = document.createElement('button');
         button.className = 'node';
         button.dataset.task = taskId;
-        button.innerHTML = `<strong>${detail.name}</strong>${detail.tagline}`;
+        if (!detail) return;
+        const values = taskWeights[taskId] || {};
+        const sortedDims = [...dimensionOrder].sort((a, b) => (values[b] || 0) - (values[a] || 0));
+        const primary = sortedDims[0];
+        const secondary = sortedDims[1];
+        const chips = [];
+        if (primary) {
+          chips.push(`<span class="value-chip value-chip--primary" data-dim="${primary}">${axisLabel[primary]} ${values[primary] || 0}%</span>`);
+        }
+        if (secondary) {
+          chips.push(`<span class="value-chip" data-dim="${secondary}">${axisLabel[secondary]} ${values[secondary] || 0}%</span>`);
+        }
+        const resilienceLevel = detail.resilience || 'M';
+        const greenLevel = detail.green || 'M';
+        button.innerHTML = `
+          <div class="node-head">
+            <strong>${detail.name}</strong>
+            <div class="node-baseline">
+              <span class="baseline-pill baseline-pill--compact" data-level="${resilienceLevel}">韧 ${formatBaseline(resilienceLevel)}</span>
+              <span class="baseline-pill baseline-pill--compact" data-level="${greenLevel}">绿 ${formatBaseline(greenLevel)}</span>
+            </div>
+          </div>
+          <p>${detail.tagline}</p>
+          ${chips.length ? `<div class="node-weight">${chips.join('')}</div>` : ''}
+        `;
         nodesBox.appendChild(button);
       });
     });
@@ -1763,49 +2086,6 @@
       return map[level] || level || '-';
     }
 
-    function buildMatrix() {
-      if (!matrixBody) return;
-      matrixBody.innerHTML = '';
-      Object.entries(valueProfiles).forEach(([domain, profile]) => {
-        if (domain === 'overall') return;
-        const chips = ['jianfu', 'zengxin', 'xietong', 'chuangxin', 'puhui']
-          .map(key => `<span class=\"matrix-chip\">${axisLabel[key]} ${profile.data[key]}%</span>`).join('');
-        const config = domainConfigs.find(item => item.id === domain);
-        const levelOrder = { H: 3, M: 2, L: 1 };
-        let resilienceLevel = 'L';
-        let greenLevel = 'L';
-        let representatives = '';
-        if (config) {
-          representatives = config.tasks.slice(0, 3).map(id => taskDetails[id].name).join('、');
-          if (config.tasks.length > 3) {
-            representatives += ' 等';
-          }
-          config.tasks.forEach(id => {
-            const detail = taskDetails[id];
-            if (detail && detail.resilience && levelOrder[detail.resilience] > levelOrder[resilienceLevel]) {
-              resilienceLevel = detail.resilience;
-            }
-            if (detail && detail.green && levelOrder[detail.green] > levelOrder[greenLevel]) {
-              greenLevel = detail.green;
-            }
-          });
-        }
-        const profileBaseline = profile && profile.baseline ? profile.baseline : '';
-        const configBaseline = config && config.baseline ? config.baseline : '';
-        const baselineNote = profileBaseline || configBaseline;
-        const representativeText = baselineNote ? `${representatives}｜${baselineNote}` : representatives;
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${profile.label}</td>
-          <td>${chips}</td>
-          <td>韧性 ${formatBaseline(resilienceLevel)}</td>
-          <td>绿色 ${formatBaseline(greenLevel)}</td>
-          <td>${representativeText || '-'}</td>
-        `;
-        matrixBody.appendChild(row);
-      });
-    }
-
     function renderValueCards() {
       if (!valueCardsContainer) return;
       valueCardsContainer.innerHTML = '';
@@ -1822,21 +2102,6 @@
       });
     }
 
-    function renderDimensionSwitcher() {
-      if (!dimensionSwitcher) return;
-      dimensionSwitcher.innerHTML = '';
-      dimensionOrder.forEach(id => {
-        const narrative = valueNarratives[id];
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.dataset.dimension = id;
-        button.textContent = narrative.label;
-        if (id === currentDimension) button.classList.add('active');
-        button.addEventListener('click', () => setDimension(id));
-        dimensionSwitcher.appendChild(button);
-      });
-    }
-
     function setDimension(dimensionId, options = {}) {
       currentDimension = dimensionId;
       if (valueCardsContainer) {
@@ -1844,18 +2109,21 @@
           btn.classList.toggle('active', btn.dataset.dimension === dimensionId);
         });
       }
-      if (dimensionSwitcher) {
-        dimensionSwitcher.querySelectorAll('button').forEach(btn => {
-          btn.classList.toggle('active', btn.dataset.dimension === dimensionId);
-        });
-      }
       renderDimensionPanel(dimensionId);
-      renderDimensionInsights(dimensionId);
     }
 
     function renderDimensionPanel(dimensionId) {
       if (!dimensionPanel) return;
       const narrative = valueNarratives[dimensionId];
+      const topTasks = [...tasks]
+        .sort((a, b) => (b.values[dimensionId] || 0) - (a.values[dimensionId] || 0))
+        .slice(0, 3);
+      const taskHtml = topTasks.map((task, index) => `
+        <button type="button" class="task-chip" data-task="${task.id}">
+          <h4>${index + 1}. ${task.name}<span>${task.values[dimensionId]}%</span></h4>
+          <p>${task.tagline}</p>
+        </button>`).join('');
+      const metricsHtml = narrative.metrics.map(item => `<li>${item}</li>`).join('');
       dimensionPanel.innerHTML = `
         <span class="dimension-subtitle">${narrative.cardSubtitle}</span>
         <h3>${narrative.headline}</h3>
@@ -1865,38 +2133,139 @@
           <ul class="shift-list">${narrative.shifts.map(item => `<li>${item}</li>`).join('')}</ul>
         </div>
         ${narrative.quote ? `<blockquote>${narrative.quote}</blockquote>` : ''}
+        <div class="dimension-block">
+          <h4>攻坚任务榜</h4>
+          <div class="dimension-tasks">${taskHtml}</div>
+        </div>
+        <div class="dimension-block">
+          <h4>领导最该盯的 KPI</h4>
+          <ul class="metric-list">${metricsHtml}</ul>
+        </div>
         <p class="dimension-focus">${narrative.focus}</p>
       `;
-    }
-
-    function renderDimensionInsights(dimensionId) {
-      if (!dimensionInsight) return;
-      const narrative = valueNarratives[dimensionId];
-      const topTasks = [...tasks].sort((a, b) => (b.values[dimensionId] || 0) - (a.values[dimensionId] || 0)).slice(0, 3);
-      const taskHtml = topTasks.map((task, index) => `
-        <button type="button" class="task-chip" data-task="${task.id}">
-          <h4>${index + 1}. ${task.name}<span>${task.values[dimensionId]}%</span></h4>
-          <p>${task.tagline}</p>
-        </button>`).join('');
-      const metricsHtml = narrative.metrics.map(item => `<li>${item}</li>`).join('');
-      dimensionInsight.innerHTML = `
-        <div class="insight-tasks">${taskHtml}</div>
-        <div class="insight-metrics">
-          <h4>领导最该盯的 KPI</h4>
-          <ul>${metricsHtml}</ul>
-        </div>
-      `;
-      dimensionInsight.querySelectorAll('.task-chip').forEach(button => {
+      dimensionPanel.querySelectorAll('.task-chip').forEach(button => {
         button.addEventListener('click', () => {
           renderStory(button.dataset.task);
         });
       });
     }
 
+    function renderDomainOverview() {
+      if (!domainOverview) return;
+      domainOverview.innerHTML = '';
+      domainConfigs.forEach(config => {
+        const profile = valueProfiles[config.id] || valueProfiles.overall;
+        const chips = axisKeys.map(key => `<span class=\"value-pill\">${axisLabel[key]} ${profile.data[key]}%</span>`).join('');
+        const levelOrder = { H: 3, M: 2, L: 1 };
+        let resilienceLevel = 'L';
+        let greenLevel = 'L';
+        config.tasks.forEach(id => {
+          const detail = taskDetails[id];
+          if (detail && detail.resilience && levelOrder[detail.resilience] > levelOrder[resilienceLevel]) {
+            resilienceLevel = detail.resilience;
+          }
+          if (detail && detail.green && levelOrder[detail.green] > levelOrder[greenLevel]) {
+            greenLevel = detail.green;
+          }
+        });
+        const topTaskList = config.tasks.slice(0, 3).map(id => `<li>${taskDetails[id].name}</li>`).join('');
+        const baselineNote = profile.baseline || config.baseline || '';
+        const card = document.createElement('article');
+        card.className = 'domain-card';
+        card.innerHTML = `
+          <header>
+            <div>
+              <h4>${profile.label}</h4>
+              <small>${config.motto}</small>
+            </div>
+            <div class=\"domain-meta\">
+              <span>韧性 ${formatBaseline(resilienceLevel)}</span>
+              <span>绿色 ${formatBaseline(greenLevel)}</span>
+            </div>
+          </header>
+          <div class=\"value-pill-set\">${chips}</div>
+          <div>
+            <h4 class=\"domain-subtitle\">代表任务</h4>
+            <ul>${topTaskList}</ul>
+          </div>
+          ${baselineNote ? `<p>${baselineNote}</p>` : ''}
+        `;
+        domainOverview.appendChild(card);
+      });
+    }
+
+    function renderMatrix() {
+      if (!valueMatrixContainer) return;
+      const totalCols = axisKeys.length + 3;
+      const headerCells = axisKeys.map(key => `<th scope="col">${axisLabel[key]}</th>`).join('');
+      const table = document.createElement('table');
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th scope="col">任务</th>
+            ${headerCells}
+            <th scope="col">韧性</th>
+            <th scope="col">绿色</th>
+          </tr>
+        </thead>
+      `;
+      const tbody = document.createElement('tbody');
+      domainConfigs.forEach(config => {
+        const domainRow = document.createElement('tr');
+        domainRow.className = 'matrix-domain';
+        domainRow.innerHTML = `<th scope="colgroup" colspan="${totalCols}">${config.motto} · ${config.id}${config.baseline ? `<span>${config.baseline}</span>` : ''}</th>`;
+        tbody.appendChild(domainRow);
+        config.tasks.forEach(taskId => {
+          const detail = taskDetails[taskId];
+          if (!detail) return;
+          const row = document.createElement('tr');
+          row.className = 'matrix-task-row';
+          row.dataset.task = taskId;
+          row.setAttribute('role', 'button');
+          row.setAttribute('aria-label', `${detail.name} 任务价值权重`);
+
+          const taskCell = document.createElement('td');
+          taskCell.innerHTML = `<div class="matrix-task"><strong>${detail.name}</strong><small>${detail.tagline}</small></div>`;
+          row.appendChild(taskCell);
+
+          axisKeys.forEach(key => {
+            const cell = document.createElement('td');
+            const value = (detail.values && detail.values[key]) || 0;
+            const fill = Math.max(0, Math.min(1, value / 40));
+            cell.innerHTML = `<div class="matrix-bar" style="--fill:${fill}"><span>${value}%</span></div>`;
+            row.appendChild(cell);
+          });
+
+          ['resilience', 'green'].forEach(type => {
+            const level = detail[type] || 'M';
+            const cell = document.createElement('td');
+            cell.className = 'baseline-cell';
+            cell.innerHTML = `<span class="baseline-pill" data-level="${level}">${type === 'resilience' ? '韧' : '绿'} ${formatBaseline(level)}</span>`;
+            row.appendChild(cell);
+          });
+
+          row.addEventListener('click', () => {
+            renderStory(taskId, { suppressScroll: false });
+          });
+          row.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              renderStory(taskId, { suppressScroll: false });
+            }
+          });
+          row.setAttribute('tabindex', '0');
+          tbody.appendChild(row);
+        });
+      });
+      table.appendChild(tbody);
+      valueMatrixContainer.innerHTML = '';
+      valueMatrixContainer.appendChild(table);
+    }
+
     renderValueCards();
-    renderDimensionSwitcher();
     setDimension(currentDimension, { suppressScroll: true, suppressMobile: true });
-    buildMatrix();
+    renderDomainOverview();
+    renderMatrix();
 
     function renderStory(taskId, options = {}) {
       const detail = taskDetails[taskId];
@@ -1904,11 +2273,18 @@
       const { suppressScroll = false, suppressMobile = false } = options;
       const domainConfig = domainConfigs.find(item => item.id === detail.domain);
       document.querySelectorAll('.node').forEach(btn => btn.classList.toggle('active', btn.dataset.task === taskId));
+      document.querySelectorAll('.matrix-task-row').forEach(row => row.classList.toggle('active', row.dataset.task === taskId));
+      const resilienceLevel = detail.resilience || 'M';
+      const greenLevel = detail.green || 'M';
       storyPanel.innerHTML = `
         <div class="domain-tag">${detail.domain} · VALUE SPOT</div>
         <h3>${detail.name}｜${detail.tagline}</h3>
         <p>${detail.summary}</p>
         <p>${detail.valueStory}</p>
+        <div class="panel-baseline">
+          <span class="baseline-pill baseline-pill--compact" data-level="${resilienceLevel}">韧 ${formatBaseline(resilienceLevel)}</span>
+          <span class="baseline-pill baseline-pill--compact" data-level="${greenLevel}">绿 ${formatBaseline(greenLevel)}</span>
+        </div>
         <ul class="metrics-list">${detail.metrics.map(item => `<li>${item}</li>`).join('')}</ul>
       `;
 
@@ -1935,12 +2311,19 @@
 
     function openMobileLayer(detail) {
       mobileLayerHeading.textContent = `${detail.name} · ${detail.tagline}`;
+      const values = detail.values || {};
+      const sortedDims = [...dimensionOrder].sort((a, b) => (values[b] || 0) - (values[a] || 0));
+      const mobileChips = sortedDims.slice(0, 3).map((dim, index) => `<span class="value-chip ${index === 0 ? 'value-chip--primary' : ''}" data-dim="${dim}">${axisLabel[dim]} ${values[dim] || 0}%</span>`).join('');
       mobileLayerBody.innerHTML = `
         <div class="summary">
           <h4>价值摘要</h4>
           <p>${detail.summary}</p>
           <p style="margin-top:0.4rem;">${detail.valueStory}</p>
-          <p style="margin-top:0.4rem; font-size:0.9rem; color:var(--muted);">韧性：${formatBaseline(detail.resilience)} ｜ 绿色：${formatBaseline(detail.green)}</p>
+          <div class="panel-baseline" style="margin-top:0.6rem;">
+            <span class="baseline-pill baseline-pill--compact" data-level="${detail.resilience}">韧 ${formatBaseline(detail.resilience)}</span>
+            <span class="baseline-pill baseline-pill--compact" data-level="${detail.green}">绿 ${formatBaseline(detail.green)}</span>
+          </div>
+          ${mobileChips ? `<div class="node-weight" style="margin-top:0.6rem;">${mobileChips}</div>` : ''}
         </div>
         <div class="block">
           <h4>量化指标</h4>
